@@ -39,8 +39,8 @@
 
   <rect class="zone" x="70" y="530" width="1180" height="190"/>
   <text class="title" x="500" y="555">Backend (Next.js API Routes)</text>
-  <rect class="backend" x="110" y="595" width="210" height="65"/><text class="label" x="132" y="622">Auth & Sessão</text><text class="small" x="158" y="642">NextAuth.js</text>
-  <rect class="backend" x="360" y="595" width="210" height="65"/><text class="label" x="382" y="622">Chat & Score</text><text class="small" x="396" y="642">/api/aluno/chat</text>
+  <rect class="backend" x="110" y="595" width="210" height="65"/><text class="label" x="132" y="622">Auth &amp; Sessão</text><text class="small" x="158" y="642">NextAuth.js</text>
+  <rect class="backend" x="360" y="595" width="210" height="65"/><text class="label" x="382" y="622">Chat &amp; Score</text><text class="small" x="396" y="642">/api/aluno/chat</text>
   <rect class="backend" x="610" y="595" width="210" height="65"/><text class="label" x="625" y="622">Gamificação</text><text class="small" x="640" y="642">resgates + pontos</text>
   <rect class="backend" x="860" y="595" width="210" height="65"/><text class="label" x="890" y="622">Admin CRUD</text><text class="small" x="908" y="642">auditoria</text>
   <rect class="backend" x="465" y="680" width="250" height="50"/><text class="label" x="488" y="710">SentimentCalc interno</text>
