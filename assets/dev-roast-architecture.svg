@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1537 730" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitetura do Dev-roast</title>
+  <desc id="desc">Diagrama da arquitetura server-first do Dev-roast com cliente, Next.js App Router, tRPC, Gemini e PostgreSQL.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#c8cdd0"/>
+    </marker>
+    <style>
+      .bg { fill: #171818; }
+      .zone { fill: #424747; stroke: #5f6666; stroke-width: 1; }
+      .box { fill: #202223; stroke: #a7adad; stroke-width: 1.2; }
+      .blue { fill: #3f84f4; stroke: #9fc4ff; stroke-width: 1.2; }
+      .db { fill: #2f6488; stroke: #9bc5dd; stroke-width: 1.2; }
+      .label { fill: #f3f3f0; font: 700 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .muted { fill: #d8dddd; font: 600 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .small { fill: #d8dddd; font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .line { fill: none; stroke: #c8cdd0; stroke-width: 1; marker-end: url(#arrow); }
+      .line-soft { fill: none; stroke: #c8cdd0; stroke-width: .9; }
+    </style>
+  </defs>
+  <rect class="bg" width="1537" height="730"/>
+
+  <rect class="zone" x="39" y="55" width="500" height="171"/>
+  <text class="muted" x="247" y="65">Client (Browser)</text>
+  <rect class="box" x="66" y="73" width="172" height="41"/>
+  <text class="label" x="88" y="98">Home Page(Code Editor)</text>
+  <rect class="box" x="275" y="73" width="137" height="41"/>
+  <text class="label" x="297" y="98">Roast Result Page</text>
+  <rect class="box" x="160" y="167" width="178" height="41"/>
+  <text class="label" x="181" y="192">tRPC ClienthttpBatchLink</text>
+  <rect class="box" x="375" y="167" width="139" height="41"/>
+  <text class="label" x="403" y="192">Leaderboard Page</text>
+
+  <path class="line-soft" d="M151 114 C150 140 169 153 205 167"/>
+  <path class="line-soft" d="M343 114 C346 142 330 155 291 167"/>
+  <path class="line" d="M375 180 L338 180"/>
+
+  <rect class="zone" x="553" y="55" width="897" height="473"/>
+  <text class="muted" x="944" y="65">Next.js 16 App Router</text>
+  <rect class="box" x="1269" y="73" width="146" height="41"/>
+  <text class="label" x="1291" y="98">Server Components</text>
+  <rect class="box" x="678" y="280" width="181" height="40"/>
+  <text class="label" x="704" y="305">API Route /api/trpc/[trpc]</text>
+
+  <rect class="zone" x="568" y="357" width="864" height="152" fill="none"/>
+  <text class="muted" x="965" y="367">tRPC Routers</text>
+  <rect class="box" x="1018" y="375" width="108" height="41"/>
+  <text class="label" x="1041" y="400">tRPC Router</text>
+  <rect class="box" x="594" y="452" width="169" height="39"/>
+  <text class="label" x="616" y="476">roast.create (mutation)</text>
+  <rect class="box" x="799" y="452" width="156" height="39"/>
+  <text class="label" x="824" y="476">roast.getById (query)</text>
+  <rect class="box" x="993" y="452" width="159" height="39"/>
+  <text class="label" x="1018" y="476">roast.getStats (query)</text>
+  <rect class="box" x="1189" y="452" width="170" height="39"/>
+  <text class="label" x="1215" y="476">leaderboard.list (query)</text>
+
+  <path class="line" d="M249 208 C295 236 749 231 769 280"/>
+  <path class="line" d="M514 178 C735 163 1018 135 1269 102"/>
+  <text class="small" x="755" y="151">prefetch + hydrate</text>
+  <path class="line" d="M769 320 C768 349 850 351 1018 389"/>
+  <path class="line" d="M1355 114 C1382 147 1374 253 1374 334 C1374 365 1320 367 1126 389"/>
+  <text class="small" x="1336" y="253">caller (direct)</text>
+  <path class="line" d="M1018 389 L763 453"/>
+  <path class="line" d="M1018 397 L955 452"/>
+  <path class="line" d="M1072 416 L1072 452"/>
+  <path class="line" d="M1126 397 L1274 452"/>
+
+  <rect class="zone" x="557" y="582" width="941" height="95"/>
+  <text class="muted" x="1006" y="592">External</text>
+  <rect class="blue" x="583" y="600" width="191" height="59"/>
+  <text class="label" x="610" y="625">Google Gemini</text>
+  <text class="label" x="655" y="641">gemini-2.0-</text>
+  <text class="label" x="654" y="657">flash-lite</text>
+  <rect class="db" x="1299" y="610" width="174" height="39"/>
+  <text class="label" x="1320" y="634">PostgreSQL(Drizzle ORM)</text>
+
+  <path class="line" d="M678 491 L678 600"/>
+  <text class="small" x="619" y="556">@google/generative-ai</text>
+  <path class="line" d="M1126 397 C1385 420 1385 453 1385 610"/>
+</svg>

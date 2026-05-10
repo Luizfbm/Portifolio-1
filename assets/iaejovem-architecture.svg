@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 900" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitetura do IAeJovem</title>
+  <desc id="desc">Diagrama da arquitetura do IAeJovem com atores, middleware RBAC, frontend Next.js, API routes, Abacus AI e camada de dados Prisma com PostgreSQL.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#c8cdd0"/>
+    </marker>
+    <style>
+      .bg { fill: #171818; }
+      .zone { fill: #252829; stroke: #5f6666; stroke-width: 1.2; }
+      .frontend { fill: #3b82f6; stroke: #1e3a8a; stroke-width: 2; }
+      .backend { fill: #8b5cf6; stroke: #5b21b6; stroke-width: 2; }
+      .database { fill: #10b981; stroke: #047857; stroke-width: 2; }
+      .external { fill: #f59e0b; stroke: #b45309; stroke-width: 2; }
+      .auth { fill: #ec4899; stroke: #9d174d; stroke-width: 2; }
+      .actor { fill: #65758a; stroke: #3b4554; stroke-width: 3; }
+      .label { fill: #fff; font: 700 15px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .title { fill: #f3f3f0; font: 800 18px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .small { fill: #d8dddd; font: 600 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .line { fill: none; stroke: #c8cdd0; stroke-width: 1.2; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #c8cdd0; stroke-width: 1.2; stroke-dasharray: 6 5; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1320" height="900"/>
+
+  <circle class="actor" cx="210" cy="80" r="52"/><text class="label" x="184" y="85">Aluno</text>
+  <circle class="actor" cx="660" cy="80" r="52"/><text class="label" x="617" y="85">Professor</text>
+  <circle class="actor" cx="1110" cy="80" r="52"/><text class="label" x="1062" y="85">Administrador</text>
+
+  <polygon class="auth" points="570,160 750,160 790,210 750,260 570,260 530,210"/>
+  <text class="label" x="590" y="205">Next.js Middleware</text>
+  <text class="small" x="606" y="225">RBAC Routing</text>
+
+  <rect class="zone" x="70" y="305" width="1180" height="160"/>
+  <text class="title" x="465" y="330">Frontend (Next.js / React Client Components)</text>
+  <rect class="frontend" x="130" y="360" width="280" height="70"/><text class="label" x="170" y="390">Painel do Aluno</text><text class="small" x="158" y="412">Chat Ayla, Loja, Pontos</text>
+  <rect class="frontend" x="520" y="360" width="280" height="70"/><text class="label" x="558" y="390">Painel do Professor</text><text class="small" x="562" y="412">Alunos, Gráficos, Notas</text>
+  <rect class="frontend" x="910" y="360" width="280" height="70"/><text class="label" x="958" y="390">Painel Admin</text><text class="small" x="948" y="412">Dashboard e Gestão</text>
+
+  <rect class="zone" x="70" y="530" width="1180" height="190"/>
+  <text class="title" x="500" y="555">Backend (Next.js API Routes)</text>
+  <rect class="backend" x="110" y="595" width="210" height="65"/><text class="label" x="132" y="622">Auth & Sessão</text><text class="small" x="158" y="642">NextAuth.js</text>
+  <rect class="backend" x="360" y="595" width="210" height="65"/><text class="label" x="382" y="622">Chat & Score</text><text class="small" x="396" y="642">/api/aluno/chat</text>
+  <rect class="backend" x="610" y="595" width="210" height="65"/><text class="label" x="625" y="622">Gamificação</text><text class="small" x="640" y="642">resgates + pontos</text>
+  <rect class="backend" x="860" y="595" width="210" height="65"/><text class="label" x="890" y="622">Admin CRUD</text><text class="small" x="908" y="642">auditoria</text>
+  <rect class="backend" x="465" y="680" width="250" height="50"/><text class="label" x="488" y="710">SentimentCalc interno</text>
+
+  <rect class="zone" x="80" y="765" width="360" height="100"/>
+  <text class="title" x="155" y="790">Serviços Externos</text>
+  <rect class="external" x="135" y="815" width="250" height="40"/><text class="label" x="180" y="840">Abacus.AI API</text>
+
+  <rect class="zone" x="500" y="765" width="750" height="100"/>
+  <text class="title" x="720" y="790">Prisma ORM + PostgreSQL</text>
+  <rect class="database" x="535" y="815" width="155" height="40"/><text class="label" x="565" y="840">Users</text>
+  <rect class="database" x="715" y="815" width="155" height="40"/><text class="label" x="738" y="840">Gamification</text>
+  <rect class="database" x="895" y="815" width="155" height="40"/><text class="label" x="925" y="840">Emotions</text>
+  <rect class="database" x="1075" y="815" width="135" height="40"/><text class="label" x="1103" y="840">Audit</text>
+
+  <path class="line" d="M210 132 L560 190"/>
+  <path class="line" d="M660 132 L660 160"/>
+  <path class="line" d="M1110 132 L760 190"/>
+  <path class="line" d="M580 260 L270 360"/><text class="small" x="312" y="310">Permissão Aluno</text>
+  <path class="line" d="M660 260 L660 360"/><text class="small" x="676" y="310">Professor</text>
+  <path class="line" d="M740 260 L1050 360"/><text class="small" x="922" y="310">Admin</text>
+
+  <path class="dash" d="M270 430 L215 595"/>
+  <path class="dash" d="M660 430 L215 595"/>
+  <path class="dash" d="M1050 430 L215 595"/>
+  <path class="line" d="M270 430 L465 595"/><text class="small" x="320" y="515">Mensagens</text>
+  <path class="line" d="M270 430 L715 595"/><text class="small" x="440" y="515">Troca pontos</text>
+  <path class="line" d="M660 430 L965 595"/><text class="small" x="760" y="515">Notas e busca</text>
+  <path class="line" d="M1050 430 L965 595"/><text class="small" x="1020" y="515">Gestão</text>
+
+  <path class="line" d="M465 660 L590 680"/>
+  <path class="line" d="M465 595 C390 560 285 770 260 815"/><text class="small" x="300" y="735">Prompt Ayla + Stream</text>
+  <path class="line" d="M590 730 L972 815"/><text class="small" x="710" y="770">Score emocional</text>
+
+  <path class="line" d="M215 660 L612 815"/>
+  <path class="line" d="M715 660 L792 815"/>
+  <path class="line" d="M965 660 L1142 815"/>
+</svg>
