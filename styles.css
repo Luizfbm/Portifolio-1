@@ -389,6 +389,12 @@ li {
   font-size: 0.78rem;
 }
 
+.project-hint {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
 .stack-grid article {
   padding: 20px;
 }
