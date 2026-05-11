@@ -3,6 +3,7 @@ const sections = [...document.querySelectorAll("main section[id]")];
 const backToTop = document.querySelector(".back-to-top");
 const promptLine = document.querySelector(".hero .prompt");
 const codeViewers = document.querySelectorAll("[data-code-viewer]");
+const githubStats = document.querySelectorAll("[data-github-stat]");
 
 const commandByTarget = new Map(
   [...commands].map((button) => [button.dataset.target, button])
@@ -77,6 +78,47 @@ const isHomePage = location.pathname.endsWith("/") || location.pathname.endsWith
 if (isHomePage) {
   typePrompt(promptLine, "./about-luiz.sh");
 }
+
+function makeAsciiBar(value, max) {
+  const total = 12;
+  const filled = Math.max(1, Math.min(total, Math.round((value / max) * total)));
+  return `${"█".repeat(filled)}${"░".repeat(total - filled)}`;
+}
+
+async function hydrateGithubStats() {
+  if (!githubStats.length) return;
+
+  const [profileResponse, reposResponse] = await Promise.all([
+    fetch("https://api.github.com/users/Luizfbm"),
+    fetch("https://api.github.com/users/Luizfbm/repos?per_page=100&sort=updated")
+  ]);
+
+  if (!profileResponse.ok || !reposResponse.ok) {
+    throw new Error("GitHub API unavailable");
+  }
+
+  const profile = await profileResponse.json();
+  const repos = await reposResponse.json();
+  const ninetyDaysAgo = Date.now() - 90 * 24 * 60 * 60 * 1000;
+  const updatedRecently = repos.filter((repo) => new Date(repo.updated_at).getTime() >= ninetyDaysAgo).length;
+  const repoLanguages = new Set(repos.map((repo) => repo.language).filter(Boolean));
+  const stackPriority = ["TypeScript", "JavaScript", "Python", "PHP", "Java", "C#"];
+  const featuredStack = stackPriority.find((language) => repoLanguages.has(language)) || "TypeScript";
+
+  document.querySelector('[data-github-stat="repos"]').textContent = profile.public_repos;
+  document.querySelector('[data-github-stat="updated"]').textContent = updatedRecently;
+  document.querySelector('[data-github-stat="language"]').textContent = featuredStack;
+  document.querySelector('[data-github-bar="repos"]').textContent = makeAsciiBar(profile.public_repos, 30);
+  document.querySelector('[data-github-bar="updated"]').textContent = makeAsciiBar(updatedRecently, 15);
+}
+
+hydrateGithubStats().catch(() => {
+  document.querySelector('[data-github-stat="repos"]').textContent = "GitHub";
+  document.querySelector('[data-github-stat="updated"]').textContent = "auto";
+  document.querySelector('[data-github-stat="language"]').textContent = "TypeScript";
+  document.querySelector('[data-github-bar="repos"]').textContent = "████████░░░░";
+  document.querySelector('[data-github-bar="updated"]').textContent = "██████░░░░░░";
+});
 
 codeViewers.forEach((viewer) => {
   const tabs = viewer.querySelectorAll("[data-code-tab]");

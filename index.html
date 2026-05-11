@@ -25,8 +25,9 @@
         <p class="eyebrow">Full Stack Web & Mobile Developer</p>
         <h1 id="hero-title">Construo plataformas web e mobile com IA aplicada.</h1>
         <p class="hero-copy">
-          Desenvolvedor full stack de Vitória/ES com experiência em saúde, educação e operações. Trabalho com
-          React Native, Next.js, TypeScript, Node.js, PostgreSQL, automação de processos e produtos orientados por IA.
+          Desenvolvedor Full Stack com experiência em produtos digitais para saúde, educação e operações. Construo
+          soluções web e mobile com React Native, Next.js, TypeScript, Node.js e PostgreSQL, integrando automação e IA
+          para gerar impacto prático.
         </p>
 
         <div class="hero-actions" aria-label="Ações principais">
@@ -48,6 +49,7 @@
         <nav class="command-nav" aria-label="Navegação por comandos">
           <button class="command active" data-target="experiencia" type="button">cat experiencia.log</button>
           <button class="command" data-target="projetos" type="button">ls projetos/</button>
+          <button class="command" data-target="github" type="button">git activity</button>
           <button class="command" data-target="stack" type="button">grep stack</button>
           <button class="command" data-target="formacao" type="button">cat formacao.md</button>
           <button class="command" data-target="contato" type="button">open contato</button>
@@ -178,6 +180,54 @@
             </ul>
             <span class="project-hint">clique para saber mais</span>
           </a>
+        </div>
+      </section>
+
+      <section class="section terminal-panel github-section" id="github" aria-labelledby="github-title">
+        <div class="section-heading">
+          <p class="prompt">$ git log --graph --author=Luizfbm</p>
+          <h2 id="github-title">Atividade no GitHub</h2>
+        </div>
+
+        <div class="github-terminal">
+          <div class="github-output" aria-label="Resumo da atividade no GitHub">
+            <p><span class="terminal-muted">$</span> github --activity Luizfbm --live</p>
+            <p><span class="terminal-muted">status:</span> <strong>tracking public repositories</strong></p>
+            <p>
+              <span class="terminal-muted">repos:</span>
+              <span data-github-stat="repos">--</span>
+              <span class="ascii-bar" data-github-bar="repos">░░░░░░░░░░░░</span>
+            </p>
+            <p>
+              <span class="terminal-muted">recent:</span>
+              <span data-github-stat="updated">--</span>
+              <span>repos atualizados em 90 dias</span>
+              <span class="ascii-bar" data-github-bar="updated">░░░░░░░░░░░░</span>
+            </p>
+            <p>
+              <span class="terminal-muted">stack:</span>
+              <span data-github-stat="language">TypeScript</span>
+              <span class="ascii-bar is-long">████████░░░░</span>
+            </p>
+            <p><span class="terminal-muted">graph:</span> auto-sync via public GitHub feed</p>
+          </div>
+
+          <div class="github-terminal-footer">
+            <a class="terminal-button icon-link" href="https://github.com/Luizfbm" target="_blank" rel="noreferrer">
+              <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 5.98c.98 0 1.96.13 2.88.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.14 0 1.54-.01 2.78-.01 3.16 0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"></path>
+              </svg>
+              abrir github
+            </a>
+
+            <figure class="github-chart">
+              <img
+                src="https://gh-heat.anishroy.com/api/Luizfbm/svg?theme=green&darkMode=true"
+                alt="Gráfico de contribuições públicas de Luizfbm no GitHub em tema escuro."
+                loading="lazy"
+              >
+            </figure>
+          </div>
         </div>
       </section>
 
