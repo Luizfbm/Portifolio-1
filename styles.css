@@ -328,7 +328,12 @@ li {
   margin: 7px 0;
 }
 
-.project-grid,
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
 .stack-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -608,6 +613,10 @@ li {
   padding: 22px;
   border-left: 2px solid var(--green);
   background: var(--panel);
+}
+
+.case-result + .case-result {
+  margin-top: 14px;
 }
 
 .back-to-top {
