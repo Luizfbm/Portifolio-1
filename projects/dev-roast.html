@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Case study do Dev-roast, plataforma de análise de código com IA.">
+  <meta name="description" content="Case do Dev-roast, plataforma de análise de código com IA.">
   <title>Dev-roast | Luiz Filipe Miranda</title>
   <link rel="icon" type="image/png" href="../assets/favicon.png">
   <link rel="stylesheet" href="../styles.css">
@@ -18,10 +18,10 @@
       <section class="hero case-hero" aria-labelledby="project-title">
         <p class="prompt">$ open projects/dev-roast</p>
         <p class="eyebrow">AI code review | produto compartilhável</p>
-        <h1 id="project-title">Dev-roast empacota code review com IA em uma experiência viral.</h1>
+        <h1 id="project-title">Dev-roast pega revisão de código com IA e deixa o resultado fácil de compartilhar.</h1>
         <p class="hero-copy">
-          Plataforma onde usuários enviam snippets, recebem crítica técnica, score, veredito e resultado compartilhável,
-          com arquitetura server-first, tRPC, Drizzle e syntax highlighting no servidor.
+          O usuário cola um snippet e recebe crítica técnica, score, veredito, sugestões e uma página de resultado.
+          Por baixo, o projeto usa server-first, tRPC, Drizzle e syntax highlight no servidor.
         </p>
         <div class="hero-actions">
           <a class="terminal-button" href="../index.html#projetos">voltar</a>
@@ -35,36 +35,36 @@
       <section class="metrics case-metrics" aria-label="Destaques do projeto">
         <article><strong>Server-first</strong><span>menos JavaScript no cliente</span></article>
         <article><strong>Type-safe</strong><span>Drizzle -> tRPC -> React</span></article>
-        <article><strong>Shareable</strong><span>resultados pensados para social</span></article>
-        <article><strong>Shiki SSR</strong><span>syntax highlight sem peso no bundle</span></article>
+        <article><strong>Shareable</strong><span>resultado pronto para compartilhar</span></article>
+        <article><strong>Shiki SSR</strong><span>highlight sem pesar no cliente</span></article>
       </section>
 
       <section class="section terminal-panel">
         <div class="section-heading"><p class="prompt">$ cat story.md</p><h2>História</h2></div>
         <p class="case-copy">
-          O Dev-roast pega uma ação simples, colar código, e transforma em um produto com personalidade. A parte vendável
-          está no equilíbrio entre entretenimento e análise técnica: o usuário recebe feedback, pontuação, veredito,
-          sugestões e um resultado pronto para compartilhar.
+          O Dev-roast parte de uma ação simples: colar um trecho de código. A graça está no tom, mas o produto não
+          depende só da piada. Ele entrega análise, pontuação, veredito, sugestões e uma página final que funciona bem
+          como conteúdo compartilhável.
         </p>
       </section>
 
       <section class="section architecture-section">
         <div class="section-heading"><p class="prompt">$ cat architecture.svg</p><h2>Arquitetura</h2></div>
         <figure class="architecture-figure">
-          <img src="../assets/dev-roast-architecture.svg" alt="Diagrama da arquitetura do Dev-roast com Client, Next.js App Router, tRPC Router, Gemini e PostgreSQL.">
+          <img src="../assets/dev-roast-architecture.svg?v=diagram-v2" alt="Diagrama da arquitetura do Dev-roast com Client, Next.js App Router, tRPC Router, Gemini e PostgreSQL.">
           <figcaption>
-            Fluxo server-first: páginas e Server Components hidratam dados via tRPC, mutações passam por rotas API,
-            a análise usa Gemini e a persistência fica em PostgreSQL com Drizzle ORM.
+            Fluxo server-first: páginas e Server Components preparam dados via tRPC, mutações passam por API Route,
+            a análise usa Gemini e os resultados ficam em PostgreSQL com Drizzle ORM.
           </figcaption>
         </figure>
       </section>
 
       <section class="section">
-        <div class="section-heading"><p class="prompt">$ grep selling-points</p><h2>O que torna vendável</h2></div>
+        <div class="section-heading"><p class="prompt">$ grep selling-points</p><h2>Por que vale olhar</h2></div>
         <div class="selling-grid">
-          <article><h3>Produto memorável</h3><p>O tom de roast cria diferenciação imediata em um mercado cheio de ferramentas genéricas.</p></article>
-          <article><h3>Arquitetura moderna</h3><p>Next.js 16, React 19, tRPC, TanStack Query, Drizzle e Tailwind v4.</p></article>
-          <article><h3>Performance como feature</h3><p>Server Components, prefetch/hydration e highlighting no servidor reduzem custo no cliente.</p></article>
+          <article><h3>Tom que chama atenção</h3><p>O roast tira a análise de código do formato genérico e deixa o resultado mais fácil de lembrar.</p></article>
+          <article><h3>Stack atual</h3><p>Next.js 16, React 19, tRPC, TanStack Query, Drizzle e Tailwind v4.</p></article>
+          <article><h3>Menos peso no cliente</h3><p>Server Components, prefetch/hydration e Shiki no servidor reduzem trabalho no browser.</p></article>
         </div>
       </section>
 
@@ -266,7 +266,7 @@ export default async function Image({
         </div>
       </section>
 
-      <section class="section case-result"><p class="prompt">$ result</p><p>Projeto que vende domínio de produto, IA, arquitetura server-first e preocupação real com experiência compartilhável.</p></section>
+      <section class="section case-result"><p class="prompt">$ result</p><p>Uma ideia simples bem fechada: IA para revisar código, página compartilhável e arquitetura server-first por baixo.</p></section>
     </main>
   </div>
   <button class="back-to-top" type="button" aria-label="Voltar ao topo">^</button>

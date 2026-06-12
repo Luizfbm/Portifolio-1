@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Case study do Case Flow, sistema de chamados com chatbot inteligente.">
+  <meta name="description" content="Case do Case Flow, sistema de chamados com chatbot inteligente.">
   <title>Case Flow | Luiz Filipe Miranda</title>
   <link rel="icon" type="image/png" href="../assets/favicon.png">
   <link rel="stylesheet" href="../styles.css">
@@ -18,10 +18,10 @@
       <section class="hero case-hero" aria-labelledby="project-title">
         <p class="prompt">$ open projects/case-flow</p>
         <p class="eyebrow">InovaApp2025 | operações e suporte</p>
-        <h1 id="project-title">Case Flow converte conversa em operação rastreável.</h1>
+        <h1 id="project-title">Case Flow pega conversa solta e vira chamado organizado.</h1>
         <p class="hero-copy">
-          Sistema de chamados com Kanban, controle por setor e chatbot capaz de interpretar mensagens, extrair contexto
-          e criar tickets com categoria e prioridade.
+          Sistema de chamados com Kanban, controle por setor e chatbot que entende a mensagem do usuário, extrai
+          contexto e cria ticket com categoria e prioridade.
         </p>
         <div class="hero-actions">
           <a class="terminal-button" href="../index.html#projetos">voltar</a>
@@ -34,7 +34,7 @@
       </section>
 
       <section class="metrics case-metrics" aria-label="Destaques do projeto">
-        <article><strong>IA -> ticket</strong><span>extração de título, descrição, categoria e prioridade</span></article>
+        <article><strong>Mensagem -> ticket</strong><span>título, descrição, categoria e prioridade</span></article>
         <article><strong>4 status</strong><span>novos, andamento, aguardando e finalizados</span></article>
         <article><strong>4 roles</strong><span>Admin, TI, SAC e Financeiro</span></article>
         <article><strong>Histórico</strong><span>conversa vira contexto operacional</span></article>
@@ -43,29 +43,29 @@
       <section class="section terminal-panel">
         <div class="section-heading"><p class="prompt">$ cat story.md</p><h2>História</h2></div>
         <p class="case-copy">
-          O Case Flow resolve uma dor comum de operação: pessoas descrevem problemas de forma livre, mas o time precisa
-          receber tickets estruturados. O projeto cria uma camada de IA entre conversa e workflow, reduzindo atrito para
-          o usuário e entregando ao time um chamado já classificado, priorizado e rastreável.
+          O Case Flow ataca um problema comum: o usuário explica o problema do jeito dele, mas o time precisa de um
+          ticket organizado para agir. A IA fica nessa passagem. Ela entende a mensagem, sugere estrutura e entrega ao
+          Kanban um chamado mais pronto para triagem.
         </p>
       </section>
 
       <section class="section architecture-section">
-        <div class="section-heading"><p class="prompt">$ cat architecture.png</p><h2>Arquitetura</h2></div>
+        <div class="section-heading"><p class="prompt">$ cat architecture.svg</p><h2>Arquitetura</h2></div>
         <figure class="architecture-figure">
-          <img src="../assets/case-flow-architecture.png" alt="Diagrama da arquitetura do Case Flow com usuários, frontend Next.js, API routes serverless, Abacus.AI NLP, Prisma ORM e PostgreSQL.">
+          <img src="../assets/case-flow-architecture.svg?v=diagram-v2" alt="Diagrama da arquitetura do Case Flow com usuários, frontend Next.js, API Routes serverless, Abacus.AI NLP, Prisma ORM, NextAuth e PostgreSQL.">
           <figcaption>
-            Fluxo da aplicação: usuários interagem com a interface, chatbot e Kanban acionam API Routes serverless,
-            o NLP externo interpreta mensagens e Prisma centraliza persistência em PostgreSQL.
+            Fluxo da aplicação: a interface envia mensagens e ações para API Routes serverless. O NLP externo interpreta
+            a demanda e o Prisma grava tickets, usuários e comentários no PostgreSQL.
           </figcaption>
         </figure>
       </section>
 
       <section class="section">
-        <div class="section-heading"><p class="prompt">$ grep selling-points</p><h2>O que torna vendável</h2></div>
+        <div class="section-heading"><p class="prompt">$ grep selling-points</p><h2>Por que vale olhar</h2></div>
         <div class="selling-grid">
-          <article><h3>Automação pragmática</h3><p>A IA não é decorativa: ela transforma linguagem natural em dados operacionais.</p></article>
-          <article><h3>Controle por setor</h3><p>Roles e categorias limitam o acesso e organizam responsabilidades por área.</p></article>
-          <article><h3>Fluxo completo</h3><p>Ticket, comentários, status, Kanban e histórico fecham o ciclo de atendimento.</p></article>
+          <article><h3>Automação sem teatro</h3><p>A IA entra onde ajuda: transformar texto livre em dados que o time consegue usar.</p></article>
+          <article><h3>Responsabilidade por setor</h3><p>Roles e categorias deixam claro quem pode ver, assumir e resolver cada demanda.</p></article>
+          <article><h3>Atendimento fechado</h3><p>Ticket, comentários, status, Kanban e histórico ficam no mesmo fluxo.</p></article>
         </div>
       </section>
 
@@ -240,7 +240,7 @@ function detectTicketIntent(message: string): boolean {
         </div>
       </section>
 
-      <section class="section case-result"><p class="prompt">$ result</p><p>Projeto que mostra IA aplicada a operação real: captura intenção, classifica demanda e alimenta um workflow de suporte.</p></section>
+      <section class="section case-result"><p class="prompt">$ result</p><p>Mostra IA no meio da operação: entende a intenção, organiza a demanda e manda o chamado para o fluxo de suporte.</p></section>
     </main>
   </div>
   <button class="back-to-top" type="button" aria-label="Voltar ao topo">^</button>

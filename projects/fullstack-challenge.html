@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Case study do Chrono Crash, Crash Game full-stack com NestJS, React, RabbitMQ, Keycloak, Kong, observabilidade e testes E2E.">
+  <meta name="description" content="Case do Chrono Crash, Crash Game full stack com NestJS, React, RabbitMQ, Keycloak, Kong, observabilidade e testes E2E.">
   <title>Chrono Crash | Luiz Filipe Miranda</title>
   <link rel="icon" type="image/png" href="../assets/favicon.png">
   <link rel="stylesheet" href="../styles.css">
@@ -17,12 +17,12 @@
     <main>
       <section class="hero case-hero" aria-labelledby="project-title">
         <p class="prompt">$ open projects/chrono-crash</p>
-        <p class="eyebrow">Full-stack challenge | realtime, money e observability</p>
-        <h1 id="project-title">Chrono Crash entrega um Crash Game auditável com arquitetura de produção.</h1>
+        <p class="eyebrow">Full-stack challenge | realtime, dinheiro e observabilidade</p>
+        <h1 id="project-title">Chrono Crash é um Crash Game full stack tratado como produto real.</h1>
         <p class="hero-copy">
-          Desafio full-stack transformado em uma plataforma completa: frontend React/Vite, backend NestJS em dois
-          bounded contexts, RabbitMQ para comandos financeiros, Keycloak como IdP, Kong como gateway, PostgreSQL,
-          Prisma, Socket.IO, Prometheus, Grafana, Jaeger, OpenTelemetry e uma suite robusta de testes automatizados.
+          Começou como desafio técnico, mas eu puxei para um cenário mais próximo de produção: React/Vite no frontend,
+          NestJS separado em Game e Wallet, RabbitMQ para comandos financeiros, Keycloak, Kong, PostgreSQL, Prisma,
+          Socket.IO, Prometheus, Grafana, Jaeger, OpenTelemetry e testes E2E.
         </p>
         <div class="hero-actions">
           <a class="terminal-button" href="../index.html#projetos">voltar</a>
@@ -34,20 +34,19 @@
       </section>
 
       <section class="metrics case-metrics" aria-label="Destaques do projeto">
-        <article><strong>2 serviços</strong><span>Game e Wallet separados por contexto</span></article>
-        <article><strong>RabbitMQ</strong><span>comandos financeiros com outbox e inbox</span></article>
+        <article><strong>2 serviços</strong><span>Game e Wallet em contextos separados</span></article>
+        <article><strong>RabbitMQ</strong><span>débitos e créditos com outbox e inbox</span></article>
         <article><strong>Provably fair</strong><span>commitment, HMAC SHA-256 e verificação</span></article>
-        <article><strong>84.58%</strong><span>coverage global reportado no README</span></article>
+        <article><strong>84.58%</strong><span>coverage global registrado no README</span></article>
       </section>
 
       <section class="section terminal-panel">
         <div class="section-heading"><p class="prompt">$ cat story.md</p><h2>História</h2></div>
         <p class="case-copy">
-          O Chrono Crash nasceu como um desafio full-stack, mas foi tratado como um produto de cassino realtime com
-          requisitos de auditoria. A entrega não se limita ao fluxo apostar, multiplicador, cashout ou crash: o projeto
-          separa responsabilidades entre Game Service e Wallet Service, protege rotas com Keycloak, centraliza entrada
-          via Kong, mantém saldo e ledger em centavos com BigInt, publica eventos de rodada por Socket.IO e expõe
-          métricas e traces para inspeção operacional.
+          Peguei o desafio como se fosse um produto de cassino realtime. O ponto não era só apostar, ver multiplicador
+          e sacar antes do crash. Eu queria deixar claro onde cada responsabilidade mora: Game Service não mexe direto
+          no saldo, Wallet Service cuida do ledger em centavos com BigInt, Kong concentra entrada, Keycloak emite
+          identidade, Socket.IO publica os eventos da rodada e a stack de observabilidade deixa a operação auditável.
         </p>
       </section>
 
@@ -56,22 +55,22 @@
         <figure class="architecture-figure">
           <img src="../assets/fullstack-challenge-architecture.svg" alt="Diagrama da arquitetura do Chrono Crash com React Vite, Kong, Keycloak, Game Service, Wallet Service, RabbitMQ, PostgreSQL e observabilidade.">
           <figcaption>
-            Fluxo principal: React/Vite acessa Kong, Kong encaminha REST e Socket.IO para o Game Service, Keycloak
-            emite JWTs, Game e Wallet validam JWKS, comandos financeiros trafegam por RabbitMQ e observabilidade passa
-            por Prometheus, Grafana, Jaeger e OpenTelemetry Collector.
+            Fluxo principal: React/Vite entra pelo Kong. O gateway encaminha REST e Socket.IO para o Game Service,
+            Keycloak emite JWTs, Game e Wallet validam JWKS, RabbitMQ carrega comandos financeiros e Prometheus,
+            Grafana, Jaeger e OpenTelemetry dão visibilidade da operação.
           </figcaption>
         </figure>
       </section>
 
       <section class="section">
-        <div class="section-heading"><p class="prompt">$ grep selling-points</p><h2>O que torna vendável</h2></div>
+        <div class="section-heading"><p class="prompt">$ grep selling-points</p><h2>Por que vale olhar</h2></div>
         <div class="selling-grid">
-          <article><h3>Consistência financeira</h3><p>Game nunca altera saldo diretamente. Débito e crédito passam por RabbitMQ, outbox no Game, inbox no Wallet e comandos idempotentes.</p></article>
-          <article><h3>Realtime auditável</h3><p>Rodadas emitem snapshot, betting started, started, tick, crashed, settled, bet placed e cashed out por Socket.IO.</p></article>
-          <article><h3>Operação observável</h3><p>Prometheus coleta métricas de apostas, cashouts, WebSocket, RTP, auto bet e comandos de wallet; Jaeger recebe traces via OTEL.</p></article>
-          <article><h3>Segurança e identidade</h3><p>Keycloak fornece authorization code flow com PKCE no frontend e JWT validado por JWKS nos serviços NestJS.</p></article>
-          <article><h3>Game mechanics reais</h3><p>Provably fair com serverSeedHash antes da rodada, serverSeed revelado após crash, HMAC SHA-256, auto cashout e auto bet Martingale.</p></article>
-          <article><h3>Qualidade verificável</h3><p>Bun test, Vitest, Playwright, E2E de API, E2E browser, responsividade, Docker healthchecks e quality gate por baseline.</p></article>
+          <article><h3>Consistência financeira</h3><p>O Game não altera saldo direto. Débito e crédito passam por RabbitMQ, outbox no Game, inbox no Wallet e comandos idempotentes.</p></article>
+          <article><h3>Realtime auditável</h3><p>A rodada publica snapshot, abertura de apostas, ticks, crash, settlement, apostas e cashouts por Socket.IO.</p></article>
+          <article><h3>Operação observável</h3><p>Prometheus mede apostas, cashouts, WebSocket, RTP, auto bet e comandos de wallet. Jaeger recebe traces via OTEL.</p></article>
+          <article><h3>Segurança e identidade</h3><p>Keycloak cuida do login com authorization code flow e PKCE no frontend. Os serviços NestJS validam JWT por JWKS.</p></article>
+          <article><h3>Mecânicas de jogo</h3><p>Provably fair com serverSeedHash antes da rodada, serverSeed revelado depois do crash, HMAC SHA-256, auto cashout e auto bet Martingale.</p></article>
+          <article><h3>Qualidade verificável</h3><p>Bun test, Vitest, Playwright, E2E de API, E2E browser, testes responsivos, Docker healthchecks e quality gate por baseline.</p></article>
         </div>
       </section>
 
@@ -88,17 +87,17 @@
         <div class="case-result">
           <p class="prompt">domain + reliability</p>
           <p>
-            Dois bancos separados, `games` e `wallets`; money em centavos com BigInt; multiplicadores em basis points;
+            Dois bancos separados, `games` e `wallets`; dinheiro em centavos com BigInt; multiplicadores em basis points;
             outbox/inbox para idempotência; retries exponenciais em créditos; leaderboard por lucro líquido; auto bet
-            com estratégia fixed e Martingale, stop-loss e take-profit.
+            com estratégias fixed e Martingale, stop-loss e take-profit.
           </p>
         </div>
         <div class="case-result">
           <p class="prompt">quality + evidence</p>
           <p>
-            O README registra `bun run ci:local`, `bun run ci:e2e` e `bun run test:e2e:browser` passando na última
-            auditoria local, com 17 testes E2E de API, 7 testes browser, coverage global de 84.58%, duplicação de
-            1.46% e zero vulnerabilidades high/critical.
+            O README registra `bun run ci:local`, `bun run ci:e2e` e `bun run test:e2e:browser` na última auditoria
+            local: 17 testes E2E de API, 7 testes de browser, coverage global de 84.58%, duplicação de 1.46% e
+            nenhuma vulnerabilidade high/critical.
           </p>
         </div>
       </section>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Case study do IAeJovem, plataforma de apoio emocional para estudantes com IA empática.">
+  <meta name="description" content="Case do IAeJovem, plataforma de apoio emocional para estudantes com IA empática.">
   <title>IAeJovem | Luiz Filipe Miranda</title>
   <link rel="icon" type="image/png" href="../assets/favicon.png">
   <link rel="stylesheet" href="../styles.css">
@@ -23,10 +23,10 @@
       <section class="hero case-hero" aria-labelledby="project-title">
         <p class="prompt">$ open projects/iaejovem</p>
         <p class="eyebrow">HackFaesa2025 | saúde emocional estudantil</p>
-        <h1 id="project-title">IAeJovem transforma cuidado emocional em um produto seguro e acompanhável.</h1>
+        <h1 id="project-title">IAeJovem aproxima apoio emocional da rotina escolar sem expor conversas.</h1>
         <p class="hero-copy">
-          Plataforma full-stack para estudantes conversarem com Ayla, uma IA empática, enquanto professores acompanham
-          sinais de atenção por scores emocionais, sem acessar o conteúdo privado das conversas.
+          Estudantes conversam com a Ayla, uma IA com tom acolhedor. Professores veem scores e sinais de atenção,
+          mas não leem o conteúdo privado das conversas.
         </p>
         <div class="hero-actions">
           <a class="terminal-button" href="../index.html#projetos">voltar</a>
@@ -39,10 +39,10 @@
       </section>
 
       <section class="metrics case-metrics" aria-label="Destaques do projeto">
-        <article><strong>3 perfis</strong><span>aluno, professor e administrador</span></article>
-        <article><strong>IA empática</strong><span>Ayla conversa com escuta ativa</span></article>
-        <article><strong>Scores 0-10</strong><span>sinalização emocional sem expor conversas</span></article>
-        <article><strong>Auditoria</strong><span>ações críticas registradas para governança</span></article>
+        <article><strong>3 perfis</strong><span>aluno, professor e admin</span></article>
+        <article><strong>IA empática</strong><span>Ayla conversa com tom acolhedor</span></article>
+        <article><strong>Scores 0-10</strong><span>sinal emocional sem abrir conversas</span></article>
+        <article><strong>Auditoria</strong><span>ações sensíveis ficam registradas</span></article>
       </section>
 
       <section class="section terminal-panel">
@@ -51,20 +51,19 @@
           <h2>História</h2>
         </div>
         <p class="case-copy">
-          O IAeJovem foi pensado como uma ponte entre acolhimento e gestão escolar. O aluno precisa de um espaço
-          confidencial para falar; a instituição precisa identificar padrões de risco sem invadir essa privacidade.
-          A solução separa conversa privada, score emocional e acompanhamento pedagógico, criando um produto sensível
-          ao contexto humano e tecnicamente estruturado para crescer.
+          Pensei o IAeJovem como uma ponte cuidadosa entre conversa e acompanhamento escolar. O estudante precisa de
+          um espaço reservado para falar. A escola precisa perceber quando algo merece atenção. Por isso, o projeto
+          separa chat privado, score emocional e painel pedagógico.
         </p>
       </section>
 
       <section class="section architecture-section">
         <div class="section-heading"><p class="prompt">$ cat architecture.svg</p><h2>Arquitetura</h2></div>
         <figure class="architecture-figure">
-          <img src="../assets/iaejovem-architecture.svg" alt="Diagrama da arquitetura do IAeJovem com atores, middleware RBAC, painéis, API routes, Abacus AI e camada de dados Prisma PostgreSQL.">
+          <img src="../assets/iaejovem-architecture.svg?v=diagram-v2" alt="Diagrama da arquitetura do IAeJovem com atores, middleware RBAC, painéis, API routes, Abacus AI e camada de dados Prisma PostgreSQL.">
           <figcaption>
-            Fluxo de dados do IAeJovem: middleware protege rotas por papel, painéis consomem API Routes,
-            Ayla conversa via Abacus.AI e a análise emocional é persistida separadamente da conversa privada.
+            Fluxo de dados: o middleware libera rotas conforme o papel do usuário, os painéis chamam API Routes,
+            Ayla conversa via Abacus.AI e a análise emocional fica separada do texto privado.
           </figcaption>
         </figure>
       </section>
@@ -72,12 +71,12 @@
       <section class="section">
         <div class="section-heading">
           <p class="prompt">$ grep selling-points</p>
-          <h2>O que torna vendável</h2>
+          <h2>Por que vale olhar</h2>
         </div>
         <div class="selling-grid">
-          <article><h3>Privacidade como arquitetura</h3><p>Professores acompanham scores e alertas, não o conteúdo íntimo das conversas.</p></article>
-          <article><h3>Produto completo</h3><p>Chat, pontos, resgates, dashboards, notificações, auditoria e ações em massa.</p></article>
-          <article><h3>IA com personalidade</h3><p>Ayla não se apresenta como bot: ela conversa como uma presença acolhedora e jovem.</p></article>
+          <article><h3>Privacidade desde o desenho</h3><p>O professor acompanha score e alerta. A conversa em si continua fora do painel.</p></article>
+          <article><h3>Mais que um chat</h3><p>Tem pontos, resgates, dashboards, notificações, auditoria e ações em massa.</p></article>
+          <article><h3>Ayla tem voz própria</h3><p>A conversa foi pensada para soar acolhedora, jovem e direta, não como formulário disfarçado.</p></article>
         </div>
       </section>
 
@@ -235,7 +234,7 @@ const redemption = await prisma.$transaction(async (tx) =&gt; {
 
       <section class="section case-result">
         <p class="prompt">$ result</p>
-        <p>Produto com impacto social, modelagem relacional forte e IA aplicada com cuidado de privacidade.</p>
+        <p>Um bom exemplo de IA em produto sensível: útil, mas com limite claro para privacidade.</p>
       </section>
     </main>
   </div>
