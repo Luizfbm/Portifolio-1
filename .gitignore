@@ -1,2 +1,6 @@
 .superpowers/
+.wrangler/
+.dev.vars
+.node-version
+node_modules/
 
