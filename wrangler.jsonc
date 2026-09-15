@@ -7,9 +7,11 @@
   "observability": {
     "enabled": true
   },
+  // Only the built output is published. Never point this at "." — the repo root
+  // would upload .git and every source file with it.
   "assets": {
-    "directory": ".",
-    "not_found_handling": "404-page"
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
   },
   "routes": [
     {

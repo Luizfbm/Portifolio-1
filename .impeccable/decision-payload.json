@@ -1,0 +1,160 @@
+{
+  "title": "Escolhe o mundo visual",
+  "question": "O roll caiu na maquete de luz. O viewfinder ganhou a pesagem. Mantém o roll, pega um alternate, ou re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Maquete de frestas",
+      "kicker": "THE ROLL",
+      "lineage": "maquete branca de arquitetura com luz em fresta",
+      "thesis": "O site é uma maquete branca: o retrato mora na fachada, os cases são cortes, a luz entra em fresta.",
+      "palette": ["#111111", "#2c2c2c", "#7a7a7a", "#d4d4d4", "#f2f2f2"],
+      "materials": ["cardboard", "slit light", "glass edge"],
+      "viewport": "Retrato colado na fachada, Beams como sol de fresta atrás, nome em lâmina de vidro.",
+      "risk": "Recrutador pode achar que caiu num studio de arquitetura, não no portfólio de um full stack.",
+      "raised": [
+        { "from": "challenger-secession", "raise": "Cromo cresce das bordas; o retrato fica na clareira." },
+        { "from": "challenger-collider", "raise": "Selecionar um case isola ele e apaga o resto." },
+        { "from": "challenger-azulejo", "raise": "Tudo encaixa em módulo inteiro, nunca fração." },
+        { "from": "challenger-bricks", "raise": "O case novo chega aceso; o anterior fica fantasma." }
+      ],
+      "comp": ".impeccable/mocks/decision/assigned.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "beams / fresta", "x": 0, "y": 0, "w": 12, "h": 10 },
+          { "label": "retrato na fachada", "x": 6, "y": 1, "w": 5, "h": 7, "accent": true },
+          { "label": "nome em vidro", "x": 1, "y": 2, "w": 4, "h": 2 },
+          { "label": "contato", "x": 1, "y": 8, "w": 4, "h": 1 }
+        ]
+      }
+    },
+    {
+      "id": "model-pick",
+      "label": "Estúdio de luz prática",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "esquema de iluminação fotográfica",
+      "thesis": "Beams são holofotes de verdade ao redor do retrato, não um fundo de biblioteca.",
+      "palette": ["#111111", "#2c2c2c", "#7a7a7a", "#d4d4d4", "#f2f2f2"],
+      "materials": ["skin gelatin silver", "practical beam", "softbox glass"],
+      "viewport": "Luiz grande à direita, nome à esquerda, feixes como key/fill atrás.",
+      "risk": "É o pouso mais familiar deste brief: retrato + 3D + vidro, o que a categoria também espera.",
+      "comp": ".impeccable/mocks/decision/model-pick.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "beams", "x": 0, "y": 0, "w": 12, "h": 10 },
+          { "label": "nome / nav vidro", "x": 1, "y": 1, "w": 5, "h": 3 },
+          { "label": "retrato", "x": 6, "y": 0, "w": 6, "h": 10, "accent": true }
+        ]
+      }
+    },
+    {
+      "id": "challenger-viewfinder",
+      "label": "Viewfinder",
+      "verdict": "wins",
+      "lineage": "visor de filmadora: brackets, zoom W–T, zebra, tape counter",
+      "thesis": "O retrato é o plano. Você enquadra Luiz; os cases são as fitas.",
+      "palette": ["#0a0a0a", "#d8d8d8", "#8a8a8a", "#f2f2f2"],
+      "materials": ["OSD ink", "zebra stripe", "full-bleed gelatin"],
+      "viewport": "Foto full-bleed, brackets no rosto, zoom W–T, contador no canto.",
+      "case": "Ganha identificação (é uma cara sendo filmada) e clareza (W=scan, T=case).",
+      "risk": "Pode parecer HUD de câmera se o OSD cobrir o retrato.",
+      "comp": ".impeccable/mocks/decision/challenger-viewfinder.webp",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-viewfinder-bracket-hud-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/pop-culture-shelf-viewfinder-bracket-hud.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "retrato full-bleed", "x": 0, "y": 0, "w": 12, "h": 10, "accent": true },
+          { "label": "OSD / zoom / counter", "x": 0, "y": 0, "w": 12, "h": 2 },
+          { "label": "lista de fitas / cases", "x": 0, "y": 8, "w": 12, "h": 2 }
+        ]
+      }
+    },
+    {
+      "id": "challenger-darkroom",
+      "label": "Ficha de exposição",
+      "verdict": "competitive",
+      "lineage": "registro de darkroom: folhas translúcidas, onze zonas",
+      "thesis": "O site é uma ficha de queima: cinza em onze degraus, cases são regiões de exposição.",
+      "palette": ["#0e0e0e", "#3a3a3a", "#8c8c8c", "#e6e6e6"],
+      "materials": ["tracing paper", "zone ramp", "enlarger glow"],
+      "viewport": "Retrato sob o ampliador, folhas de zona sobrepostas, nome em caps condensada.",
+      "case": "Segura identificação fotográfica com a foto P&B; perde clareza para o recrutador.",
+      "risk": "Hatch e stop-delta podem parecer ferramenta, não portfólio.",
+      "comp": ".impeccable/mocks/decision/challenger-darkroom.webp",
+      "hero": "https://impeccable.style/worlds/cards/operate-b-exposure-record-zone-sheets-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/operate-b-exposure-record-zone-sheets.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "retrato / zona", "x": 2, "y": 1, "w": 8, "h": 7, "accent": true },
+          { "label": "folha overlay", "x": 3, "y": 2, "w": 8, "h": 6 },
+          { "label": "legenda tabular", "x": 0, "y": 8, "w": 12, "h": 2 }
+        ]
+      }
+    },
+    {
+      "id": "challenger-secession",
+      "label": "Página secessionista",
+      "verdict": "declined",
+      "lineage": "revista Cracóvia, borda-flor crescendo da margem",
+      "palette": ["#111111", "#cfcfcf", "#f4f4f4"],
+      "materials": ["ornament line", "clearing"],
+      "case": "Ornamento floral não identifica um full stack de ERP/saúde.",
+      "kept": "Cromo cresce das bordas; o retrato fica na clareira.",
+      "hero": "https://impeccable.style/worlds/cards/design-canon-mloda-polska-secession-page-hero.webp"
+    },
+    {
+      "id": "challenger-collider",
+      "label": "Event display",
+      "verdict": "declined",
+      "lineage": "detector de partículas, tracks em anéis",
+      "palette": ["#0a0a0a", "#9aa3ad", "#d0d0d0"],
+      "materials": ["steel ring", "track"],
+      "case": "3D de colisor some com a cara e com a prova de entrega.",
+      "kept": "Um case por vez; o resto some.",
+      "hero": "https://impeccable.style/worlds/cards/scientific-notation-particle-detector-event-display-hero.webp"
+    },
+    {
+      "id": "challenger-azulejo",
+      "label": "Salão de azulejo",
+      "verdict": "declined",
+      "lineage": "estação em cobalto sobre branco",
+      "palette": ["#f4f4f4", "#2a2a2a"],
+      "materials": ["tile grout", "narrative panel"],
+      "case": "Cobalto quebra a paleta da foto; estação não é o job do recrutador.",
+      "kept": "Módulo inteiro, nunca recorte fracionado.",
+      "hero": "https://impeccable.style/worlds/cards/architecture-places-azulejo-station-hall-hero.webp"
+    },
+    {
+      "id": "challenger-bricks",
+      "label": "Manual de peças",
+      "verdict": "declined",
+      "lineage": "instrução de montar tijolo, seta muda, peça nova",
+      "palette": ["#d8d8d8", "#111111"],
+      "materials": ["stud grid", "call-out"],
+      "case": "Linguagem de brinquedo compete com PVT/TOTVS.",
+      "kept": "O novo chega aceso; o anterior fica fantasma.",
+      "hero": "https://impeccable.style/worlds/cards/games-toys-physics-play-brick-build-instructions-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": true },
+  "canon": true,
+  "canonCard": {
+    "label": "O padrão da categoria",
+    "thesis": "Hero dark, nome, blob 3D, bento de cases, executado no máximo.",
+    "palette": ["#0b0b0b", "#f5f5f5", "#6e6e6e"],
+    "materials": ["soft 3D", "bento", "sans"],
+    "viewport": "O arranjo que o recrutador já viu em todo portfólio 2025.",
+    "risk": "Indistinguível dos outros, de propósito.",
+    "comp": ".impeccable/mocks/decision/canon.webp"
+  },
+  "steer": true
+}

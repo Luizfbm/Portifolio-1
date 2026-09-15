@@ -3,4 +3,6 @@
 .dev.vars
 .node-version
 node_modules/
-
+.DS_Store
+dist/
+*.tsbuildinfo

@@ -1,0 +1,123 @@
+/* Palette lida da própria fotografia: preto, carvão, prata, branco. Nada fora disso. */
+
+:root {
+  color-scheme: dark;
+
+  --sweep-top: #171717;
+  --sweep-bottom: #050505;
+  --plane: #101010;
+  --plane-lit: #181818;
+
+  --ink: #f2f2f2;
+  --ink-2: #bdbdbd;
+  --ink-3: #8f8f8f;
+
+  --rule: rgba(242, 242, 242, 0.16);
+  --rule-strong: rgba(242, 242, 242, 0.34);
+
+  --glass-tint: rgba(255, 255, 255, 0.05);
+  --glass-edge: rgba(255, 255, 255, 0.18);
+
+  /* Posição de repouso do rig; o JS reescreve estas variáveis a cada quadro. */
+  --key-x: -0.4;
+  --key-y: -0.42;
+  --key-px: 34.8%;
+  --key-py: 27.4%;
+  --shade-px: 67.6%;
+  --shade-py: 55.2%;
+
+  --spill: 0.28; /* luz derramada atrás do sujeito */
+  --cast: 0.28; /* sombra projetada no ciclorama */
+  --shape: 0.38; /* modelagem do lado escuro do rosto */
+  --key-strength: 0.42;
+
+  --selection-bg: #f2f2f2;
+  --selection-ink: #0b0b0b;
+  --scroll-thumb: rgba(242, 242, 242, 0.22);
+  --scroll-thumb-hover: rgba(242, 242, 242, 0.4);
+
+  --font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --font-body: 'Instrument Sans Variable', 'Instrument Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  --gutter: clamp(1.25rem, 5.5vw, 6.5rem);
+  --bar-h: 4.5rem;
+  --measure: 68ch;
+  --shell: 1480px;
+
+  --step-display: clamp(2.75rem, 7.4vw, 6rem);
+  --step-title: clamp(1.85rem, 3.6vw, 3.1rem);
+  --step-lead: clamp(1.125rem, 1.55vw, 1.4rem);
+  --step-body: 1.0625rem;
+  --step-small: 0.8125rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-light: cubic-bezier(0.33, 0, 0.15, 1);
+
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --sweep-top: #f8f8f8;
+  --sweep-bottom: #d9d9d9;
+  --plane: #efefef;
+  --plane-lit: #f7f7f7;
+
+  --ink: #111111;
+  --ink-2: #3d3d3d;
+  --ink-3: #5e5e5e;
+
+  --rule: rgba(17, 17, 17, 0.18);
+  --rule-strong: rgba(17, 17, 17, 0.38);
+
+  --glass-tint: rgba(255, 255, 255, 0.42);
+  --glass-edge: rgba(17, 17, 17, 0.14);
+
+  --spill: 0.14;
+  --cast: 0.5;
+  --shape: 0.4;
+  --key-strength: 0.3;
+
+  --selection-bg: #111111;
+  --selection-ink: #f6f6f6;
+  --scroll-thumb: rgba(17, 17, 17, 0.24);
+  --scroll-thumb-hover: rgba(17, 17, 17, 0.42);
+}
+
+:root {
+  --vt-x: 50%;
+  --vt-y: 0px;
+}
+
+::view-transition-old(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  animation: theme-wipe 560ms var(--ease-light) both;
+  mix-blend-mode: normal;
+  z-index: 2;
+}
+
+::view-transition-group(root) {
+  animation-duration: 560ms;
+}
+
+@keyframes theme-wipe {
+  from {
+    clip-path: circle(0px at var(--vt-x) var(--vt-y));
+  }
+  to {
+    clip-path: circle(140vmax at var(--vt-x) var(--vt-y));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

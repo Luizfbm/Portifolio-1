@@ -1,0 +1,211 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--scroll-thumb) transparent;
+  scrollbar-width: thin;
+  overflow-x: clip;
+  scroll-padding-top: calc(var(--bar-h) + env(safe-area-inset-top, 0px));
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  overflow-x: clip;
+  background:
+    linear-gradient(180deg, var(--sweep-top) 0%, var(--sweep-bottom) 78%),
+    var(--sweep-bottom);
+  background-attachment: scroll;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-body);
+  line-height: 1.62;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 420ms var(--ease-light),
+    color 420ms var(--ease-light);
+}
+
+/* Grão de prata gelatinosa: o site inteiro é uma cópia fotográfica. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.24;
+  background-image: var(--grain);
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+}
+
+:root[data-theme='light'] body::after {
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-ink);
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
+  background-clip: content-box;
+}
+
+input,
+textarea {
+  caret-color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 640;
+  font-stretch: 108%;
+  letter-spacing: -0.032em;
+  line-height: 0.98;
+  text-wrap: balance;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Rótulo pequeno de apoio. Continua na voz do texto, não na do código. */
+.meta {
+  font-size: 0.8rem;
+  letter-spacing: 0.005em;
+  color: var(--ink-3);
+}
+
+/* Mono só onde há medida, data ou código. Números tabulares sempre. */
+.reading {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 200;
+  padding: 0.7rem 1.1rem;
+  background: var(--ink);
+  color: var(--selection-ink);
+  font-weight: 600;
+  transition: top 180ms var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+}
+
+@media (min-width: 901px) {
+  body {
+    background-attachment: fixed;
+  }
+}
+
+@media (pointer: coarse) {
+  body::after {
+    opacity: 0.12;
+  }
+
+  :root[data-theme='light'] body::after {
+    opacity: 0.16;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

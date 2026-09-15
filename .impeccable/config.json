@@ -1,0 +1,22 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "index.html",
+          "projects/case-flow.html",
+          "projects/dev-roast.html",
+          "projects/fullstack-challenge.html",
+          "projects/iaejovem.html"
+        ],
+        "createdAt": "2026-09-12T01:50:41.249Z",
+        "reason": "Agent: incumbent terminal/CMD portfolio uses a single mono face at near-body sizes by design; Lenis install does not change type hierarchy and a full redesign is already planned"
+      }
+    ]
+  }
+}
