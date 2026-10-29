@@ -1,7 +1,9 @@
 import { useId, useState } from 'react';
 import type { CodeTab } from '../data/cases';
+import { useUi } from '../data/ui';
 
 export function CodeViewer({ tabs }: { tabs: CodeTab[] }) {
+  const t = useUi();
   const baseId = useId();
   const [active, setActive] = useState(0);
   const tab = tabs[active];
@@ -9,7 +11,7 @@ export function CodeViewer({ tabs }: { tabs: CodeTab[] }) {
 
   return (
     <div className="code">
-      <div className="code__tabs" role="tablist" aria-label="Trechos de código">
+      <div className="code__tabs" role="tablist" aria-label={t.codeTabs}>
         {tabs.map((item, index) => (
           <button
             key={item.file}

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './lib/theme';
+import { useUi } from './data/ui';
 import { useSmoothScroll } from './lib/smoothScroll';
 import Home from './pages/Home';
 import CaseStudyPage from './pages/CaseStudyPage';
@@ -30,16 +31,23 @@ function Positioning() {
 
 function Shell() {
   useSmoothScroll();
+  const t = useUi();
+
+  useEffect(() => {
+    document.documentElement.lang = t.htmlLang;
+  }, [t]);
 
   return (
     <>
       <Positioning />
       <a className="skip-link" href="#conteudo">
-        Pular para o conteúdo
+        {t.skip}
       </a>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cases/:slug" element={<CaseStudyPage />} />
+        <Route path="/en" element={<Home />} />
+        <Route path="/en/cases/:slug" element={<CaseStudyPage />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </>

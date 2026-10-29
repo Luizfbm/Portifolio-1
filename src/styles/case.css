@@ -112,6 +112,48 @@
   line-height: 1.6;
 }
 
+.screens {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* O primeiro print é a tela principal e ocupa a linha inteira; os outros vão
+   em pares, e o que sobrar sozinho também ganha a linha toda. */
+.screen:first-child,
+.screen:nth-child(even):last-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 780px) {
+  .screens {
+    grid-template-columns: 1fr;
+  }
+}
+
+.screen {
+  margin: 0;
+}
+
+.screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+.screen figcaption {
+  margin-top: 0.75rem;
+  color: var(--ink-3);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.screens__note {
+  margin-top: 1.25rem;
+}
+
 .points {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));

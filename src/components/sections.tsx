@@ -1,6 +1,7 @@
-import type { ReactNode } from 'react';
-import { education, roles, stackGroups } from '../data/site';
-import { useReducedMotion } from '../lib/motion';
+import { useState, type ReactNode } from 'react';
+import { useSite, type Role as RoleData } from '../data/site';
+import { useUi } from '../data/ui';
+import { useMediaQuery, useReducedMotion } from '../lib/motion';
 import LogoLoop from './vendor/LogoLoop';
 
 export function Section({
@@ -29,40 +30,62 @@ export function Section({
   );
 }
 
+/** No celular cada cargo mostra os 3 primeiros bullets; o resto abre sob demanda. */
+const COMPACT_BULLETS = 3;
+
 export function Experience() {
+  const { roles } = useSite();
+  const compact = useMediaQuery('(max-width: 780px)');
+
   return (
     <ol className="roles">
       {roles.map((role) => (
-        <li key={role.company} className={`role${role.current ? ' role--current' : ''}`}>
-          <div className="role__id">
-            <h3 className="role__company">
-              {role.href ? (
-                <a href={role.href} target="_blank" rel="noreferrer">
-                  {role.company}
-                </a>
-              ) : (
-                role.company
-              )}
-            </h3>
-            <p className="role__title">{role.title}</p>
-            <p className="role__period reading">{role.period}</p>
-          </div>
-          <div className="role__body">
-            <p className="role__summary">{role.summary}</p>
-            <ul className="role__bullets">
-              {role.bullets.map((bullet) => (
-                <li key={bullet}>{bullet}</li>
-              ))}
-            </ul>
-            <ul className="chips">
-              {role.stack.map((tech) => (
-                <li key={tech}>{tech}</li>
-              ))}
-            </ul>
-          </div>
-        </li>
+        <Role key={role.company} role={role} compact={compact} />
       ))}
     </ol>
+  );
+}
+
+function Role({ role, compact }: { role: RoleData; compact: boolean }) {
+  const t = useUi();
+  const [open, setOpen] = useState(false);
+  const hidden = compact && !open ? Math.max(0, role.bullets.length - COMPACT_BULLETS) : 0;
+  const bullets = hidden ? role.bullets.slice(0, COMPACT_BULLETS) : role.bullets;
+
+  return (
+    <li className={`role${role.current ? ' role--current' : ''}`}>
+      <div className="role__id">
+        <h3 className="role__company">
+          {role.href ? (
+            <a href={role.href} target="_blank" rel="noreferrer">
+              {role.company}
+            </a>
+          ) : (
+            role.company
+          )}
+        </h3>
+        <p className="role__title">{role.title}</p>
+        <p className="role__period reading">{role.period}</p>
+      </div>
+      <div className="role__body">
+        <p className="role__summary">{role.summary}</p>
+        <ul className="role__bullets">
+          {bullets.map((bullet) => (
+            <li key={bullet}>{bullet}</li>
+          ))}
+        </ul>
+        {hidden ? (
+          <button type="button" className="role__more" onClick={() => setOpen(true)}>
+            {t.more(hidden)}
+          </button>
+        ) : null}
+        <ul className="chips">
+          {role.stack.map((tech) => (
+            <li key={tech}>{tech}</li>
+          ))}
+        </ul>
+      </div>
+    </li>
   );
 }
 
@@ -86,6 +109,8 @@ const MARQUEE = [
 ];
 
 export function StackBand() {
+  const t = useUi();
+  const { stackGroups } = useSite();
   const reduced = useReducedMotion();
   const logos = MARQUEE.map((name) => ({
     node: <span className="wordmark">{name}</span>,
@@ -104,7 +129,7 @@ export function StackBand() {
           pauseOnHover={!reduced}
           fadeOut
           fadeOutColor="var(--plane)"
-          ariaLabel="Tecnologias usadas no dia a dia"
+          ariaLabel={t.stackLoop}
         />
       </div>
 
@@ -121,6 +146,7 @@ export function StackBand() {
 }
 
 export function Education() {
+  const { education } = useSite();
   return (
     <ul className="education">
       {education.map((entry) => (

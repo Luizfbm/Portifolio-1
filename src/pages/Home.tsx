@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { person, positioning, positioningNote } from '../data/site';
+import { person, useSite } from '../data/site';
+import { useUi } from '../data/ui';
 import { Education, Experience, Section, StackBand } from '../components/sections';
 import { SiteHeader } from '../components/SiteHeader';
 import { StudioStage } from '../components/StudioStage';
@@ -8,9 +9,12 @@ import { Vitrine } from '../components/Vitrine';
 import { WordReveal } from '../components/WordReveal';
 
 export default function Home() {
+  const t = useUi();
+  const { positioning, positioningNote } = useSite();
+
   useEffect(() => {
-    document.title = 'Luiz Filipe Miranda, desenvolvedor full stack';
-  }, []);
+    document.title = t.title;
+  }, [t]);
 
   return (
     <>
@@ -18,25 +22,25 @@ export default function Home() {
       <main id="conteudo">
         <StudioStage />
 
-        <WordReveal text={positioning} note={positioningNote} />
-
-        <Section id="experiencia" title="Experiência" aside="Onde o trabalho foi entregue e o que mudou depois.">
+        <Section id="experiencia" title={t.sections.experiencia.title} aside={t.sections.experiencia.aside}>
           <Experience />
         </Section>
 
-        <Section id="cases" title="Cases" aside="Quatro projetos com arquitetura, decisões e código abertos.">
+        <Section id="cases" title={t.sections.cases.title} aside={t.sections.cases.aside}>
           <Vitrine />
         </Section>
 
-        <Section id="stack" title="Stack" aside="O que uso no dia a dia.">
+        <Section id="stack" title={t.sections.stack.title} aside={t.sections.stack.aside}>
           <StackBand />
         </Section>
 
-        <Section id="formacao" title="Formação">
+        <Section id="formacao" title={t.sections.formacao.title}>
           <Education />
         </Section>
 
-        <Section id="contato" title="Contato" aside="Resposta pelo email costuma ser a mais rápida.">
+        <WordReveal text={positioning} note={positioningNote} title={t.positioningTitle} />
+
+        <Section id="contato" title={t.sections.contato.title} aside={t.sections.contato.aside}>
           <ul className="contact">
             <li>
               <SweepLink href={`mailto:${person.email}`}>{person.email}</SweepLink>

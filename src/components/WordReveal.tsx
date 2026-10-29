@@ -5,13 +5,14 @@ import { useMediaQuery, useReducedMotion } from '../lib/motion';
 type WordRevealProps = {
   text: string;
   note?: string;
+  title: string;
 };
 
 /**
  * Skiper72 in-world: a segunda sessão é uma folha colada. As palavras entram
  * pela direita, com skew, e só param no centro quando o scroll paga o trecho.
  */
-export function WordReveal({ text, note }: WordRevealProps) {
+export function WordReveal({ text, note, title }: WordRevealProps) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const narrow = useMediaQuery('(max-width: 780px)');
@@ -28,7 +29,7 @@ export function WordReveal({ text, note }: WordRevealProps) {
         <div className="reveal__pin">
           <div className="reveal__layout shell">
             <h2 className="visually-hidden" id="posicionamento-title">
-              Posicionamento
+              {title}
             </h2>
             {note ? <p className="reveal__aside">{note}</p> : null}
             <p className="statement">{text}</p>
@@ -43,7 +44,7 @@ export function WordReveal({ text, note }: WordRevealProps) {
       <div className="reveal__pin">
         <div className="reveal__layout shell">
           <h2 className="visually-hidden" id="posicionamento-title">
-            Posicionamento
+            {title}
           </h2>
           {note ? (
             <aside className="reveal__aside">

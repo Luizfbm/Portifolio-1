@@ -40,14 +40,14 @@ O visitante chega de GitHub, LinkedIn ou email, em desktop ou telefone, com pouc
 ## Brand Commitments
 
 - Nome: Luiz Filipe Miranda.
-- Retrato em `assets/luiz-portrait.png` (P&B, recorte com alpha derivado do JPEG sem fundo). Aparece no primeiro viewport, sobre os Beams. A paleta do site é extraída desta imagem: pretos, carvões, pratas, branco. Não inventar um accent colorido que a foto não tem.
+- Retrato em `public/assets/luiz-portrait.png` (P&B, recorte com alpha derivado do JPEG sem fundo). Aparece no primeiro viewport, sobre os Beams. A paleta do site é extraída desta imagem: pretos, carvões, pratas, branco. Não inventar um accent colorido que a foto não tem.
 - Claro e escuro existem (referência Skiper4); os dois modos continuam dentro da família da foto.
 - Ingredientes de UI que o autor quer no redesign (não são o mundo visual inteiro): Skiper80 (vitrine de projetos), Skiper4 (toggle), Skiper40 (links), Skiper72 (reveal de texto numa seção), React Bits Beams (fundo 3D de feixes), GlassSurface (vidro), LogoLoop (faixa de stack). Skiper16 (pilha de cards no scroll) fica para decisão posterior.
 - Tom: direto, técnico, em português. Sem hype inventado.
 
 ## Evidence on Hand
 
-- Retrato: `assets/luiz-portrait.png` (alpha). Fonte JPEG original em `assets/luiz-portrait-cutout-source.jpg`.
+- Retrato: `public/assets/luiz-portrait.png` (alpha). Fonte JPEG original em `assets/luiz-portrait-cutout-source.jpg`.
 - Experiência atual, PVT Software (`https://www.pvtsoftware.com.br/`): blue/green com PM2 + Nginx e rollback; query de portfólio 36s → 3s; sistema anti-alucinação para agentes SQL/ERP (~15min → 5min, adotado pelo time); orquestrador Node/PostgreSQL + Evolution API + painel Next.js para atendimento interno no WhatsApp; integração TOTVS RM (DataServer, REST/SOAP TBC). Stack citada: C#, NestJS, SQL, Docker, Next.js, React, TypeScript, Tailwind.
 - S_line — Sistemas Online (anterior): React Native / Node; 48+ telas; EAS + GitHub Actions (2 dias → <3h); 30+ apps white-label. O site antigo marcava este cargo como "atual"; isso está obsoleto.
 - Super Estágios (estágio): PHP/JS; fluxos com 3,5 milhões de estudantes.

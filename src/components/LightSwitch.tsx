@@ -1,6 +1,7 @@
 import { useId, type MouseEvent } from 'react';
 import { motion } from 'motion/react';
 import { useTheme } from '../lib/theme';
+import { useUi } from '../data/ui';
 
 const RAYS = [0, 45, 90, 135, 180, 225, 270, 315];
 
@@ -10,6 +11,7 @@ const RAYS = [0, 45, 90, 135, 180, 225, 270, 315];
  * próprio botão, como um cone de luz.
  */
 export function LightSwitch() {
+  const t = useUi();
   const { theme, toggle } = useTheme();
   const clipId = `luz-${useId().replace(/:/g, '')}`;
   const lightsOn = theme === 'light';
@@ -25,8 +27,8 @@ export function LightSwitch() {
       className="switch"
       onClick={onToggle}
       aria-pressed={lightsOn}
-      title={lightsOn ? 'Usar tema escuro' : 'Usar tema claro'}
-      aria-label={lightsOn ? 'Usar tema escuro' : 'Usar tema claro'}
+      title={lightsOn ? t.themeToDark : t.themeToLight}
+      aria-label={lightsOn ? t.themeToDark : t.themeToLight}
     >
       <svg className="switch__icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
         <defs>
@@ -42,6 +44,8 @@ export function LightSwitch() {
           <motion.circle
             cx="16"
             cy="16"
+            r={lightsOn ? 10 : 6.2}
+            initial={false}
             animate={{ r: lightsOn ? 10 : 6.2 }}
             transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.42 }}
           />

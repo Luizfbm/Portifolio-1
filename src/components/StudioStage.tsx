@@ -2,21 +2,18 @@ import { lazy, Suspense, useEffect, useState, type RefObject } from 'react';
 import { useMediaQuery, useReducedMotion } from '../lib/motion';
 import { useStudioLight } from '../lib/studioLight';
 import { useTheme } from '../lib/theme';
-import { person } from '../data/site';
+import { person, useSite } from '../data/site';
+import { useUi } from '../data/ui';
 import { LightSwitch } from './LightSwitch';
+import { LocaleSwitch } from './LocaleSwitch';
 import { Portrait } from './Portrait';
 import { SweepLink } from './SweepLink';
 
 const Beams = lazy(() => import('./vendor/Beams'));
 
-const NAV = [
-  { href: '#experiencia', label: 'Experiência' },
-  { href: '#cases', label: 'Cases' },
-  { href: '#stack', label: 'Stack' },
-  { href: '#contato', label: 'Contato' }
-];
-
 export function StudioStage() {
+  const t = useUi();
+  const { heroProof, cv } = useSite();
   const reduced = useReducedMotion();
   const coarse = useMediaQuery('(pointer: coarse)');
   const narrow = useMediaQuery('(max-width: 780px)');
@@ -35,6 +32,30 @@ export function StudioStage() {
     return () => io.disconnect();
   }, [stageRef]);
 
+  // O three.js pesa ~240 KB gzip. Ele só entra depois que a página pintou e ficou
+  // ociosa, e nem entra para quem pediu menos movimento ou economia de dados.
+  const [rigReady, setRigReady] = useState(false);
+  useEffect(() => {
+    const { connection } = navigator as Navigator & { connection?: { saveData?: boolean } };
+    if (reduced || connection?.saveData) return;
+    let idle = 0;
+    let timer = 0;
+    const start = () => {
+      if (typeof window.requestIdleCallback === 'function') {
+        idle = window.requestIdleCallback(() => setRigReady(true), { timeout: 2000 });
+      } else {
+        timer = window.setTimeout(() => setRigReady(true), 600);
+      }
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+    return () => {
+      window.removeEventListener('load', start);
+      if (idle) window.cancelIdleCallback(idle);
+      window.clearTimeout(timer);
+    };
+  }, [reduced]);
+
   const light = theme === 'light';
 
   return (
@@ -42,30 +63,32 @@ export function StudioStage() {
       className="stage is-lit"
       id="topo"
       ref={stageRef as RefObject<HTMLElement>}
-      aria-label="Apresentação"
+      aria-label={t.stageLabel}
     >
-      <div className="stage__rig" aria-hidden="true">
-        <Suspense fallback={null}>
-          <Beams
-            beamWidth={narrow ? 2.4 : 2.2}
-            beamHeight={18}
-            beamNumber={narrow ? 4 : 8}
-            speed={0.85}
-            noiseIntensity={1.2}
-            scale={0.2}
-            rotation={narrow ? 24 : 32}
-            lightColor="#ffffff"
-            beamColor={light ? '#8e8e8e' : '#0f0f0f'}
-            backgroundColor="#000000"
-            transparent
-            ambient={light ? 0.85 : 0.55}
-            keyIntensity={light ? 1.2 : 1.35}
-            fillIntensity={light ? 0.45 : 0.28}
-            fillColor="#d4d4d4"
-            paused={reduced || !inView}
-            dpr={narrow ? [1, 1] : [1, 1.35]}
-          />
-        </Suspense>
+      <div className={`stage__rig${rigReady ? '' : ' stage__rig--still'}`} aria-hidden="true">
+        {rigReady ? (
+          <Suspense fallback={null}>
+            <Beams
+              beamWidth={narrow ? 2.4 : 2.2}
+              beamHeight={18}
+              beamNumber={narrow ? 4 : 8}
+              speed={0.85}
+              noiseIntensity={1.2}
+              scale={0.2}
+              rotation={narrow ? 24 : 32}
+              lightColor="#ffffff"
+              beamColor={light ? '#8e8e8e' : '#0f0f0f'}
+              backgroundColor="#000000"
+              transparent
+              ambient={light ? 0.85 : 0.55}
+              keyIntensity={light ? 1.2 : 1.35}
+              fillIntensity={light ? 0.45 : 0.28}
+              fillColor="#d4d4d4"
+              paused={!inView}
+              dpr={narrow ? [1, 1] : [1, 1.35]}
+            />
+          </Suspense>
+        ) : null}
       </div>
 
       <div className="stage__portrait">
@@ -82,17 +105,25 @@ export function StudioStage() {
                 <span>Miranda</span>
               </h1>
               <p className="panel__role">
-                {person.role} · {person.city}
+                {heroProof.current}
+                <span className="panel__city">{person.city}</span>
               </p>
-              <nav className="panel__nav" aria-label="Seções">
-                <ul>
-                  {NAV.map((item) => (
-                    <li key={item.href}>
-                      <a href={item.href}>{item.label}</a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+              <dl className="panel__proof">
+                {heroProof.metrics.map((metric) => (
+                  <div key={metric.label}>
+                    <dt>{metric.value}</dt>
+                    <dd>{metric.label}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="panel__actions">
+                <a className="button button--solid" href="#cases">
+                  {t.seeCases}
+                </a>
+                <a className="button" href={cv} download>
+                  {t.downloadCv}
+                </a>
+              </div>
             </div>
           </div>
 
@@ -115,10 +146,11 @@ export function StudioStage() {
       </div>
 
       <div className="stage__switch">
+        <LocaleSwitch />
         <LightSwitch />
       </div>
 
-      {!reduced && !coarse ? <p className="stage__hint meta">a luz segue o mouse</p> : null}
+      {!reduced && !coarse ? <p className="stage__hint meta">{t.lightHint}</p> : null}
     </section>
   );
 }

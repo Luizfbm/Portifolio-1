@@ -1,3 +1,6 @@
+import type { Locale } from '../lib/locale';
+import { casesEn } from './cases.en';
+
 export type CodeTab = { file: string; lang: string; code: string };
 
 export type CaseStudy = {
@@ -11,6 +14,8 @@ export type CaseStudy = {
   stack: string[];
   links: { label: string; href: string }[];
   story: string;
+  /** Prints do produto rodando local com dados de exemplo. O primeiro vira capa na vitrine. */
+  screens?: { src: string; alt: string; caption: string }[];
   architecture: { src: string; alt: string; caption: string };
   points: { title: string; body: string }[];
   code: CodeTab[];
@@ -35,6 +40,18 @@ export const cases: CaseStudy[] = [
     links: [{ label: 'Repositório', href: 'https://github.com/Luizfbm/fullstack-challenge' }],
     story:
       'Peguei o desafio como um cassino realtime. Queria deixar claro onde cada responsabilidade mora. O Game Service não mexe direto no saldo, o Wallet Service cuida do ledger em centavos com BigInt, o Kong concentra a entrada, o Keycloak emite identidade, o Socket.IO publica os eventos da rodada e a observabilidade deixa a operação auditável.',
+    screens: [
+      {
+        src: '/assets/cases/chrono-crash-rodada.webp',
+        alt: 'Tela do Chrono Crash durante uma rodada: multiplicador em 1.09x, aposta de R$ 10,00 aceita e botão de cash out ativo.',
+        caption: 'Rodada em andamento com aposta aceita. O saldo do topo vem do Wallet Service, o multiplicador chega pelo Socket.IO.'
+      },
+      {
+        src: '/assets/cases/chrono-crash-grafana.webp',
+        alt: 'Dashboard do Grafana com volume de apostas, total apostado, payouts, crashes por faixa, RTP e eventos WebSocket.',
+        caption: 'O dashboard provisionado no Grafana, com as métricas que o jogo exporta para o Prometheus.'
+      }
+    ],
     architecture: {
       src: '/assets/fullstack-challenge-architecture.svg',
       alt: 'Diagrama da arquitetura do Chrono Crash com React Vite, Kong, Keycloak, Game Service, Wallet Service, RabbitMQ, PostgreSQL e observabilidade.',
@@ -193,12 +210,21 @@ export class ProvablyFair {
       { label: 'trilha', value: 'auditoria de ação sensível' }
     ],
     stack: ['Next.js 14', 'TypeScript', 'PostgreSQL', 'Prisma', 'NextAuth', 'Abacus.AI'],
-    links: [
-      { label: 'Repositório', href: 'https://github.com/Luizfbm/IAeJovem-HackFaesa2025' },
-      { label: 'Demo', href: 'https://iaejovem.abacusai.app' }
-    ],
+    links: [{ label: 'Repositório', href: 'https://github.com/Luizfbm/IAeJovem-HackFaesa2025' }],
     story:
       'O estudante precisa de um espaço reservado para falar. A escola precisa perceber quando algo merece atenção. O projeto separa o chat privado, o score emocional e o painel pedagógico.',
+    screens: [
+      {
+        src: '/assets/cases/iaejovem-conversa.webp',
+        alt: 'Conversa com a Ayla: o estudante conta que está cansado com a semana de provas e a Ayla responde acolhendo e perguntando o que pesa mais.',
+        caption: 'Conversa com a Ayla. A resposta da IA neste print é um texto de exemplo.'
+      },
+      {
+        src: '/assets/cases/iaejovem-painel.webp',
+        alt: 'Painel do estudante com atalhos para conversar, ver pontos e a loja, e contadores de conversas e pontos.',
+        caption: 'Painel do estudante, com pontos, conversas da semana e a loja de resgates.'
+      }
+    ],
     architecture: {
       src: '/assets/iaejovem-architecture.svg',
       alt: 'Diagrama da arquitetura do IAeJovem com atores, middleware RBAC, painéis, API routes, Abacus AI e camada de dados Prisma PostgreSQL.',
@@ -314,12 +340,21 @@ const redemption = await prisma.$transaction(async (tx) => {
       { label: 'histórico', value: 'conversa vira contexto' }
     ],
     stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'NextAuth', 'NLP'],
-    links: [
-      { label: 'Repositório', href: 'https://github.com/Luizfbm/CaseFlow-EQPDEV' },
-      { label: 'Demo', href: 'https://caseflow.abacusai.app' }
-    ],
+    links: [{ label: 'Repositório', href: 'https://github.com/Luizfbm/CaseFlow-EQPDEV' }],
     story:
       'O usuário explica o problema do jeito dele, e o time precisa de um ticket organizado para agir. A IA fica nessa passagem. Ela entende a mensagem, sugere estrutura e entrega ao Kanban um chamado mais pronto para triagem.',
+    screens: [
+      {
+        src: '/assets/cases/case-flow-kanban.webp',
+        alt: 'Dashboard Kanban do Case Flow com chamados novos, em progresso, finalizados e retornados, cada um com setor e prioridade.',
+        caption: 'Kanban com os chamados por status, setor e prioridade.'
+      },
+      {
+        src: '/assets/cases/case-flow-chatbot.webp',
+        alt: 'Chatbot do Case Flow transformando uma mensagem em um resumo de chamado com título, descrição, departamento TI e prioridade alta.',
+        caption: 'O chatbot transforma a mensagem em um chamado e pede confirmação. A análise da IA neste print é de exemplo.'
+      }
+    ],
     architecture: {
       src: '/assets/case-flow-architecture.svg',
       alt: 'Diagrama da arquitetura do Case Flow com usuários, frontend Next.js, API Routes serverless, Abacus.AI NLP, Prisma ORM, NextAuth e PostgreSQL.',
@@ -453,6 +488,23 @@ function detectTicketIntent(message: string): boolean {
     links: [{ label: 'Repositório', href: 'https://github.com/Luizfbm/Dev-roast' }],
     story:
       'O Dev-roast parte de colar um trecho de código. O tom é de roast, e o produto entrega análise, pontuação, veredito, sugestões e uma página final que funciona como conteúdo compartilhável.',
+    screens: [
+      {
+        src: '/assets/cases/dev-roast-editor.webp',
+        alt: 'Tela inicial do Dev-roast com o editor de código, o modo roast ligado e o botão roast my code.',
+        caption: 'O editor de entrada, com detecção de linguagem e o modo roast.'
+      },
+      {
+        src: '/assets/cases/dev-roast-compartilhar.webp',
+        alt: 'Imagem de compartilhamento de um roast: nota 1.8 de 10, veredito needs serious help e a frase do roast.',
+        caption: 'A imagem gerada para compartilhar o resultado. Roast de exemplo.'
+      },
+      {
+        src: '/assets/cases/dev-roast-leaderboard.webp',
+        alt: 'Shame Leaderboard do Dev-roast listando os códigos com as piores notas e o trecho de cada um.',
+        caption: 'O leaderboard com os piores códigos, renderizados com Shiki no servidor.'
+      }
+    ],
     architecture: {
       src: '/assets/dev-roast-architecture.svg',
       alt: 'Diagrama da arquitetura do Dev-roast com Client, Next.js App Router, tRPC Router, Gemini e PostgreSQL.',
@@ -581,6 +633,30 @@ export async function CodeBlockContent({ code, lang = "typescript", className }:
   }
 ];
 
-export function findCase(slug: string | undefined): CaseStudy | undefined {
-  return cases.find((item) => item.slug === slug);
+function translate(study: CaseStudy): CaseStudy {
+  const text = casesEn[study.slug];
+  if (!text) return study;
+  return {
+    ...study,
+    context: text.context,
+    headline: text.headline,
+    summary: text.summary,
+    readings: text.readings,
+    story: text.story,
+    points: text.points,
+    closing: text.closing,
+    links: study.links.map((link) => (link.label === 'Repositório' ? { ...link, label: text.repoLabel } : link)),
+    screens: study.screens?.map((screen, index) => ({ ...screen, ...text.screens?.[index] })),
+    architecture: { ...study.architecture, ...text.architecture }
+  };
+}
+
+const casesByLocale: Record<Locale, CaseStudy[]> = { pt: cases, en: cases.map(translate) };
+
+export function getCases(locale: Locale): CaseStudy[] {
+  return casesByLocale[locale];
+}
+
+export function findCase(slug: string | undefined, locale: Locale): CaseStudy | undefined {
+  return casesByLocale[locale].find((item) => item.slug === slug);
 }
