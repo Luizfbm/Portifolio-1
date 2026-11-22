@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './lib/theme';
 import { useUi } from './data/ui';
-import { useSmoothScroll } from './lib/smoothScroll';
+import { jumpTo, useSmoothScroll } from './lib/smoothScroll';
 import Home from './pages/Home';
 import CaseStudyPage from './pages/CaseStudyPage';
 import './styles/tokens.css';
@@ -16,12 +16,13 @@ function Positioning() {
 
   useEffect(() => {
     if (!hash) {
-      window.scrollTo(0, 0);
+      jumpTo(0);
       return;
     }
     const id = hash.slice(1);
     const frame = requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({ block: 'start' });
+      const target = document.getElementById(id);
+      if (target) jumpTo(target);
     });
     return () => cancelAnimationFrame(frame);
   }, [pathname, hash]);
