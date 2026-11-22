@@ -30,6 +30,18 @@ export default function CaseStudyPage() {
         <header className="case__head">
           <div className="shell">
             <Link className="case__back" to={localePath(locale, '/#cases')}>
+              <span className="case__back-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="m12 19l-7-7l7-7m7 7H5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
               {t.caseBack}
             </Link>
             <p className="case__context meta">{study.context}</p>
