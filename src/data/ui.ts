@@ -17,7 +17,7 @@ const pt = {
   themeToLight: 'Usar tema claro',
   sections: {
     experiencia: { title: 'Experiência', aside: 'Onde o trabalho foi entregue e o que mudou depois.' },
-    cases: { title: 'Cases', aside: 'Quatro projetos com arquitetura, decisões e código abertos.' },
+    cases: { title: 'Cases', aside: 'Cinco projetos com arquitetura, decisões e código abertos.' },
     stack: { title: 'Stack', aside: 'O que uso no dia a dia.' },
     formacao: { title: 'Formação' },
     contato: { title: 'Contato', aside: 'Resposta pelo email costuma ser a mais rápida.' }
@@ -31,6 +31,7 @@ const pt = {
   caseProduct: 'Produto',
   caseProductNote: 'Rodando local, com dados de exemplo.',
   caseStory: 'História',
+  caseGlossary: 'Em palavras simples',
   caseArchitecture: 'Arquitetura',
   casePoints: 'O que isso mostra',
   caseCode: 'Código',
@@ -57,7 +58,7 @@ const en: Ui = {
   themeToLight: 'Switch to light theme',
   sections: {
     experiencia: { title: 'Experience', aside: 'Where the work shipped and what changed afterwards.' },
-    cases: { title: 'Work', aside: 'Four projects with architecture, decisions and code in the open.' },
+    cases: { title: 'Work', aside: 'Five projects with architecture, decisions and code in the open.' },
     stack: { title: 'Stack', aside: 'What I use day to day.' },
     formacao: { title: 'Education' },
     contato: { title: 'Contact', aside: 'Email is usually the fastest way to reach me.' }
@@ -71,6 +72,7 @@ const en: Ui = {
   caseProduct: 'Product',
   caseProductNote: 'Running locally with sample data.',
   caseStory: 'Story',
+  caseGlossary: 'In plain words',
   caseArchitecture: 'Architecture',
   casePoints: 'What it shows',
   caseCode: 'Code',

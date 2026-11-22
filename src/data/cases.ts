@@ -14,8 +14,12 @@ export type CaseStudy = {
   stack: string[];
   links: { label: string; href: string }[];
   story: string;
+  /** Termos do domínio explicados para quem não é da área. */
+  glossary?: { term: string; body: string }[];
   /** Prints do produto rodando local com dados de exemplo. O primeiro vira capa na vitrine. */
   screens?: { src: string; alt: string; caption: string }[];
+  /** Troca a nota padrão dos prints quando eles não vêm de uma instância local. */
+  screensNote?: string;
   architecture: { src: string; alt: string; caption: string };
   points: { title: string; body: string }[];
   code: CodeTab[];
@@ -23,6 +27,212 @@ export type CaseStudy = {
 };
 
 export const cases: CaseStudy[] = [
+  {
+    slug: 'terminators-lunar',
+    name: 'Terminators Lunar',
+    context: 'NASA Space Apps 2026',
+    headline: 'Um lander no polo sul da Lua vai ver o Sol e a Terra? Por quanto tempo?',
+    summary:
+      'Projeto do nosso time no NASA Space Apps Challenge 2026. Você escolhe um Site e uma Window, e o app diz quando o Sol e a Terra somem e qual feição do relevo esconde cada um. FastAPI e NumPy no motor, SPICE e os mapas do LOLA nos dados, React e Three.js na interface.',
+    readings: [
+      { label: 'sites', value: '134, 130 do Artemis' },
+      { label: 'horizonte', value: '720 raios em 3 resoluções' },
+      { label: 'efemérides', value: 'SPICE com DE440' },
+      { label: 'validação', value: '29 de 32 checagens passam' }
+    ],
+    stack: ['Python', 'FastAPI', 'NumPy', 'SPICE', 'rasterio', 'React', 'TypeScript', 'Three.js'],
+    links: [
+      { label: 'Repositório', href: 'https://github.com/Luizfbm/terminators-lunar' },
+      { label: 'lunar.luizfbm.win', href: 'https://lunar.luizfbm.win' }
+    ],
+    story:
+      'No polo sul da Lua o Sol fica a cerca de 1,5° do horizonte e dá uma volta nele por mês, então uma única crista decide se o painel solar funciona. Levamos isso para o desafio Lunar Landing Site Navigator como uma pergunta só: daquele ponto, naquela janela, o lander vê o Sol e a Terra? Todo o cálculo fica no backend, a Query inteira cabe no link e cada resposta nomeia o que escondeu o Sol ou a Terra. O Sol importa porque é ele que carrega os painéis, e a Terra porque sem ela à vista não há comunicação direta.',
+    glossary: [
+      {
+        term: 'Site',
+        body: 'Um ponto exato na superfície da Lua, dado por latitude e longitude. O app tem 134 deles, e uma coordenada digitada também vira um Site.'
+      },
+      {
+        term: 'Window',
+        body: 'O período que a pergunta cobre: um instante de início e uma duração. O padrão é um mês lunar, cerca de 29,5 dias.'
+      },
+      {
+        term: 'Artemis',
+        body: 'O programa da NASA para levar pessoas de volta à Lua. 130 dos Sites vêm de uma lista de candidatos de pouso publicada para ele.'
+      },
+      {
+        term: 'O motor',
+        body: 'A parte do sistema que faz as contas. Recebe o Site e a Window, calcula onde o Sol e a Terra estão no céu e compara com o relevo em volta. É um programa em Python que roda no servidor, e a tela só mostra o resultado.'
+      },
+      {
+        term: 'Efemérides',
+        body: 'Tabelas que dizem onde cada astro está em cada instante. É por elas que o motor sabe em que direção ficam o Sol e a Terra vistos da Lua.'
+      },
+      {
+        term: 'SPICE e DE440',
+        body: 'SPICE é o conjunto de ferramentas da NASA para calcular posições no espaço, o mesmo usado em missões reais. DE440 é a efeméride que ele lê: o arquivo do JPL com as órbitas do Sol, da Terra e da Lua.'
+      },
+      {
+        term: 'DEM',
+        body: 'Sigla de Digital Elevation Model, um mapa de alturas do terreno. Cada quadradinho guarda a altitude daquele pedaço de chão. Num DEM de 20 m há um valor a cada 20 metros, e quanto menor o número, mais detalhe.'
+      },
+      {
+        term: 'LOLA',
+        body: 'Lunar Orbiter Laser Altimeter, o instrumento da sonda LRO da NASA que mede a altura do solo lunar disparando laser da órbita. Os DEMs que o motor usa vêm dessas medições.'
+      },
+      {
+        term: 'Horizon mask',
+        body: 'A linha do horizonte vista de um Site. Para cada direção em volta, guarda a altura do relevo mais alto naquela direção. Se o Sol está abaixo dessa linha, ele está escondido.'
+      },
+      {
+        term: 'Occluder',
+        body: 'A montanha, a crista ou a borda de cratera que forma o horizonte numa direção. É o que esconde o Sol ou a Terra.'
+      },
+      {
+        term: 'IAU e Gazetteer',
+        body: 'A IAU é a União Astronômica Internacional, que dá os nomes oficiais a crateras e montanhas. O Gazetteer é o catálogo desses nomes, e é dele que sai o nome do que escondeu o Sol.'
+      },
+      {
+        term: 'Sunset e Earthset',
+        body: 'O instante em que o Sol, ou a Terra, some atrás do relevo. Sunrise e Earthrise são a volta. No polo, quem causa isso quase sempre é o terreno, não a rotação da Lua.'
+      },
+      {
+        term: 'Sun fraction',
+        body: 'A parte do disco do Sol que está acima do horizonte num instante, de 0 a 100%.'
+      },
+      {
+        term: 'JPL Horizons',
+        body: 'Serviço do JPL, laboratório da NASA, que calcula a posição dos astros. Serve de referência independente para conferir se os números do motor batem.'
+      }
+    ],
+    screensNote: 'Capturas do app publicado em lunar.luizfbm.win.',
+    screens: [
+      {
+        src: '/assets/cases/terminators-lunar-chao.webp',
+        alt: 'Vista do chão no Site 001, Connecting Ridge: o Sol sobre o relevo, a Terra no alto, a linha do tempo da Window e o painel com as horas de Sol e de Terra.',
+        caption:
+          'A vista do chão no Connecting Ridge. Nesta Window o Sol não se põe, e a Terra some atrás de Mons Malapert, a 134 km.'
+      },
+      {
+        src: '/assets/cases/terminators-lunar-mapa.webp',
+        alt: 'Mapa do polo sul da Lua com as regiões marcadas, entre elas Connecting Ridge, Mons Malapert, Haworth, Nobile Rim e Shackleton.',
+        caption: 'O polo sul visto de cima, com as regiões do catálogo e o Site escolhido.'
+      },
+      {
+        src: '/assets/cases/terminators-lunar-prova.webp',
+        alt: 'Página Prova com a tabela de onde um número pode errar: fonte do erro, tamanho, efeito na resposta e de onde vem o tamanho.',
+        caption: 'A página Prova abre dizendo onde um número pode errar, antes de listar as checagens.'
+      }
+    ],
+    architecture: {
+      src: '/assets/terminators-lunar-architecture.svg',
+      alt: 'Diagrama do Lunar Landing Site Navigator com interface React e Three.js, API FastAPI, motor de visibilidade e dados da NASA.',
+      caption:
+        'A interface manda a Query para a API pelo contrato OpenAPI. O motor calcula a posição do Sol e da Terra com SPICE a cada 15 minutos, monta a Horizon mask com 720 raios sobre os DEMs do LOLA e compara os dois. Fila, cache e o assistente ficam na borda da API.'
+    },
+    points: [
+      {
+        title: 'Horizonte em três resoluções',
+        body: 'Um raio a cada 0,5° de azimute sobre DEMs aninhados: 20 m até 5 km, 80 m até 100 km e 240 m até 300 km. Cada raio considera a curvatura da Lua e guarda o ângulo mais alto.'
+      },
+      {
+        title: 'O que escondeu',
+        body: 'Cada Sunset, Sunrise, Earthset e Earthrise sai com o Occluder: azimute, distância e o nome da feição no Gazetteer da IAU.'
+      },
+      {
+        title: 'Sol como disco',
+        body: 'O Sol conta como visível enquanto qualquer pedaço do disco está acima do horizonte, e a Terra conta pelo centro. Um Sol parcialmente à vista nunca arredonda para 0% nem para 100%.'
+      },
+      {
+        title: 'Validação sem ajuste',
+        body: 'São 32 checagens publicadas contra o JPL Horizons, o eclipse de 14/03/2025, o mapa de 18,6 anos da NASA e pousos reais. 29 passam, 2 falham e 1 é só um exemplo. Nenhuma tolerância mudou para uma checagem passar, e as que falham aparecem primeiro.'
+      },
+      {
+        title: 'Controles negativos',
+        body: 'Parte das checagens precisa falhar de propósito, como girar a silhueta do horizonte 1° ou deslocar o tempo em 10 minutos. Elas mostram que o teste distingue uma resposta errada de uma certa.'
+      },
+      {
+        title: 'Operação',
+        body: 'Três containers num VPS com Docker Compose: backend, Caddy e Cloudflare Tunnel. O motor roda 4 execuções por vez, e com a fila cheia a API responde 503 busy com Retry-After.'
+      },
+      {
+        title: 'Feito com agentes de IA',
+        body: 'O time escolheu a pergunta, os dados, os modelos e as tolerâncias. Agentes escreveram a maior parte do código em branches próprias, e um pull request só entrou com o diff lido e os checks verdes. Os números do app vêm dos dados da NASA, não de um modelo de linguagem.'
+      }
+    ],
+    code: [
+      {
+        file: 'horizon.py',
+        lang: 'Python',
+        code: `def look(distances: Array, band: Band) -> tuple[Array, Array, Array, Array]:
+    lat, lon = _destination(latitude_deg, longitude_deg, azimuths, distances)
+    x, y = _project(band, lat, lon, longitude_deg)
+    terrain = _heights(Path(folder), band, x, y, reads)
+    theta = distances / MOON_RADIUS_M
+    radius = MOON_RADIUS_M + terrain
+    elevation = np.degrees(
+        np.arctan2(radius * np.cos(theta) - observer_radius, radius * np.sin(theta))
+    )
+    return elevation, lat, lon, terrain
+
+# The bands don't depend on each other and numpy lets go of the GIL in its loops, so
+# they run side by side; they are merged in ladder order, as one after the other would.
+with ThreadPoolExecutor(max_workers=len(bands)) as pool:
+    found = list(pool.map(band_peaks, bands))
+for peak, distance, lat, lon, terrain in found:
+    better = peak > best
+    best = np.where(better, peak, best)
+    best_distance = np.where(better, distance, best_distance)
+    best_lat = np.where(better, lat, best_lat)
+    best_lon = np.where(better, lon, best_lon)
+    best_height = np.where(better, terrain, best_height)`
+      },
+      {
+        file: 'geometry.py',
+        lang: 'Python',
+        code: `def disc_above(center: float, radius: float) -> float:
+    if center - radius >= 0:
+        return 1.0
+    if center + radius <= 0:
+        return 0.0
+    x = max(-1.0, min(1.0, center / radius))
+    return 0.5 + math.asin(x) / math.pi + x * math.sqrt(max(0.0, 1.0 - x * x)) / math.pi
+
+
+def angle_between(a: tuple[float, float, float], b: tuple[float, float, float]) -> float:
+    dot = sum(x * y for x, y in zip(a, b))
+    magnitude = math.sqrt(sum(x * x for x in a) * sum(y * y for y in b))
+    return math.acos(max(-1.0, min(1.0, dot / magnitude)))`
+      },
+      {
+        file: 'engine.py',
+        lang: 'Python',
+        code: `def sun_fraction(self) -> float:
+    over_horizon = self._sun_over_terrain
+    behind_earth = geometry.circle_overlap_fraction(
+        self.sun_radius_rad,
+        self.earth_radius_rad,
+        geometry.angle_between(self.sun.vector_km, self.earth.vector_km),
+    )
+    return max(0.0, min(1.0, over_horizon * (1.0 - behind_earth)))
+
+
+def _refine(left: Look, right: Look, body: Seen, look: Callable[[datetime], Look]) -> datetime:
+    """Bisect the instant the body crosses the horizon, to about one second."""
+    before, after = left.instant, right.instant
+    was_above = left.above(body)
+    while (after - before).total_seconds() > 0.5:
+        middle = before + (after - before) / 2
+        if look(middle).above(body) == was_above:
+            before = middle
+        else:
+            after = middle
+    return round_second(before + (after - before) / 2)`
+      }
+    ],
+    closing:
+      'O app responde uma pergunta só e mostra, na mesma página, onde essa resposta pode estar errada.'
+  },
   {
     slug: 'chrono-crash',
     name: 'Chrono Crash',
@@ -643,6 +853,8 @@ function translate(study: CaseStudy): CaseStudy {
     summary: text.summary,
     readings: text.readings,
     story: text.story,
+    glossary: text.glossary ?? study.glossary,
+    screensNote: text.screensNote ?? study.screensNote,
     points: text.points,
     closing: text.closing,
     links: study.links.map((link) => (link.label === 'Repositório' ? { ...link, label: text.repoLabel } : link)),

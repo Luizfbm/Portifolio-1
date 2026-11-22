@@ -73,7 +73,7 @@ export default function CaseStudyPage() {
                   </figure>
                 ))}
               </div>
-              <p className="screens__note meta">{t.caseProductNote}</p>
+              <p className="screens__note meta">{study.screensNote ?? t.caseProductNote}</p>
             </section>
           ) : null}
 
@@ -84,6 +84,20 @@ export default function CaseStudyPage() {
               <figcaption>{study.architecture.caption}</figcaption>
             </figure>
           </section>
+
+          {study.glossary?.length ? (
+            <section className="case__block" aria-labelledby="glossario-title">
+              <h2 id="glossario-title">{t.caseGlossary}</h2>
+              <dl className="glossary">
+                {study.glossary.map((entry) => (
+                  <div key={entry.term}>
+                    <dt>{entry.term}</dt>
+                    <dd>{entry.body}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          ) : null}
 
           <section className="case__block" aria-labelledby="valor-title">
             <h2 id="valor-title">{t.casePoints}</h2>

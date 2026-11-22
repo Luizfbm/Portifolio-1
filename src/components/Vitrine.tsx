@@ -7,7 +7,7 @@ import { localePath, useLocale } from '../lib/locale';
 import { useMediaQuery, useReducedMotion } from '../lib/motion';
 
 /**
- * Mesa de luz: os quatro nomes ficam no escuro até a lâmina cair em um deles.
+ * Mesa de luz: os nomes ficam no escuro até a lâmina cair em um deles.
  * A ficha ao lado é um lightbox de vidro — prova curta, sem o diagrama que
  * só faz sentido na página do case.
  */

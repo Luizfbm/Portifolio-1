@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitetura do Lunar Landing Site Navigator</title>
+  <desc id="desc">Diagrama do Lunar Landing Site Navigator com interface React e Three.js, API FastAPI, motor de visibilidade e dados da NASA.</desc>
+  <style>
+    .bg { fill: #101111; }
+    .zone { fill: #151718; stroke: #34393d; stroke-width: 2; }
+    .service { fill: #191c1e; stroke: #dedede; stroke-width: 1.5; }
+    .gateway { fill: #10151f; stroke: #00d75f; stroke-width: 1.8; }
+    .data { fill: #121b16; stroke: #00d75f; stroke-width: 1.5; }
+    .ai { fill: #111827; stroke: #60a5fa; stroke-width: 1.8; }
+    .headline { fill: #f3f3f0; font: 700 22px "SFMono-Regular", Consolas, monospace; }
+    .zone-title { fill: #f3f3f0; font: 700 18px "SFMono-Regular", Consolas, monospace; }
+    .node-title { fill: #f3f3f0; font: 700 18px "SFMono-Regular", Consolas, monospace; text-anchor: middle; }
+    .node-small { fill: #c8cdd0; font: 13px "SFMono-Regular", Consolas, monospace; text-anchor: middle; }
+    .muted { fill: #9ba3aa; font: 13px "SFMono-Regular", Consolas, monospace; }
+    .edge-label { fill: #9ba3aa; font: 12px "SFMono-Regular", Consolas, monospace; text-anchor: middle; }
+    .green { fill: #00d75f; font: 700 14px "SFMono-Regular", Consolas, monospace; }
+    .line { stroke: #9ba3aa; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .strong-line { stroke: #00d75f; stroke-width: 2; fill: none; marker-end: url(#arrow-green); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#9ba3aa"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d75f"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1400" height="860"/>
+
+  <text class="green" x="56" y="48">$ curl "lunar-api.luizfbm.win/visibility?site_id=001&amp;start=..."</text>
+  <text class="headline" x="56" y="82">Lunar Landing Site Navigator - Sol e Terra vistos de um Site no polo sul da Lua</text>
+  <text class="muted" x="56" y="108">todo o cálculo no backend, a Query inteira no link, checagens publicadas na página Prova</text>
+
+  <rect class="zone" x="52" y="140" width="1296" height="150"/>
+  <text class="zone-title" x="80" y="173">Interface (React + TypeScript + Three.js)</text>
+
+  <rect class="service" x="90" y="200" width="270" height="68"/>
+  <text class="node-title" x="225" y="229">Órbita, mapa e chão</text>
+  <text class="node-small" x="225" y="249">três vistas do mesmo Site</text>
+
+  <rect class="service" x="405" y="200" width="270" height="68"/>
+  <text class="node-title" x="540" y="229">Resposta</text>
+  <text class="node-small" x="540" y="249">eventos, Occluder, Plano A x B</text>
+
+  <rect class="service" x="720" y="200" width="270" height="68"/>
+  <text class="node-title" x="855" y="229">Página Prova</text>
+  <text class="node-small" x="855" y="249">32 checagens e as lacunas</text>
+
+  <rect class="service" x="1035" y="200" width="275" height="68"/>
+  <text class="node-title" x="1172.5" y="229">Query no link</text>
+  <text class="node-small" x="1172.5" y="249">Site, Window, altura, plano B</text>
+
+  <path class="strong-line" d="M540 268 V352"/>
+  <path class="line" d="M225 268 C225 315 380 330 470 352"/>
+  <path class="line" d="M855 268 C855 315 700 330 610 352"/>
+  <text class="edge-label" x="640" y="318">contrato OpenAPI</text>
+
+  <rect class="zone" x="52" y="330" width="1296" height="150"/>
+  <text class="zone-title" x="80" y="363">API (FastAPI)</text>
+
+  <rect class="gateway" x="390" y="358" width="300" height="100"/>
+  <text class="node-title" x="540" y="392">Rotas do motor</text>
+  <text class="node-small" x="540" y="414">/visibility, /visibility/ladder</text>
+  <text class="node-small" x="540" y="434">/sites/{id}/year, /validations</text>
+
+  <rect class="service" x="760" y="375" width="250" height="68"/>
+  <text class="node-title" x="885" y="404">Fila e cache</text>
+  <text class="node-small" x="885" y="424">4 execuções, 503 busy</text>
+
+  <rect class="ai" x="1060" y="375" width="250" height="68"/>
+  <text class="node-title" x="1185" y="404">/assistant</text>
+  <text class="node-small" x="1185" y="424">lê as rotas, modo offline</text>
+
+  <path class="line" d="M690 408 H760"/>
+  <path class="line" d="M1060 430 C900 470 760 465 690 440"/>
+  <path class="strong-line" d="M540 458 V545"/>
+
+  <rect class="zone" x="52" y="520" width="1296" height="150"/>
+  <text class="zone-title" x="80" y="553">Motor de visibilidade (Python + NumPy)</text>
+
+  <rect class="service" x="90" y="580" width="330" height="68"/>
+  <text class="node-title" x="255" y="609">Efemérides</text>
+  <text class="node-small" x="255" y="629">Sol e Terra a cada 15 min</text>
+
+  <rect class="gateway" x="535" y="580" width="330" height="68" />
+  <text class="node-title" x="700" y="609">Comparação</text>
+  <text class="node-small" x="700" y="629">Sol como disco, Terra pelo centro</text>
+
+  <rect class="service" x="980" y="580" width="330" height="68"/>
+  <text class="node-title" x="1145" y="609">Horizon mask</text>
+  <text class="node-small" x="1145" y="629">720 raios + Occluder</text>
+
+  <path class="strong-line" d="M420 614 H535"/>
+  <path class="strong-line" d="M980 614 H865"/>
+
+  <rect class="zone" x="52" y="710" width="1296" height="120"/>
+  <text class="zone-title" x="80" y="743">Dados da NASA</text>
+
+  <rect class="data" x="90" y="760" width="330" height="58"/>
+  <text class="node-title" x="255" y="787">SPICE + DE440</text>
+  <text class="node-small" x="255" y="807">kernels via spiceypy</text>
+
+  <rect class="data" x="535" y="760" width="330" height="58"/>
+  <text class="node-title" x="700" y="787">Gazetteer da IAU</text>
+  <text class="node-small" x="700" y="807">nome da feição que esconde</text>
+
+  <rect class="data" x="980" y="760" width="330" height="58"/>
+  <text class="node-title" x="1145" y="787">DEMs do LOLA</text>
+  <text class="node-small" x="1145" y="807">20 m, 80 m e 240 m aninhados</text>
+
+  <path class="line" d="M255 760 V648"/>
+  <path class="line" d="M1145 760 V648"/>
+  <path class="line" d="M865 775 C920 740 1000 690 1060 648"/>
+</svg>
