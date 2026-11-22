@@ -1,4 +1,5 @@
-import { useState, type ReactNode } from 'react';
+import { useRef, useState, type ReactNode } from 'react';
+import { motion, useInView, useScroll, useSpring } from 'motion/react';
 import { useSite, type Role as RoleData } from '../data/site';
 import { useUi } from '../data/ui';
 import { useMediaQuery, useReducedMotion } from '../lib/motion';
@@ -33,27 +34,47 @@ export function Section({
 /** No celular cada cargo mostra os 3 primeiros bullets; o resto abre sob demanda. */
 const COMPACT_BULLETS = 3;
 
+/** Onde na altura da tela a linha do tempo "chega": 70% a partir do topo. */
+const REACH = '70%';
+
+/**
+ * Linha vertical que se completa com o scroll, um ponto por cargo. A mola é a
+ * do scroll-progress do motion-primitives, virada para o eixo Y e presa à
+ * seção em vez da página.
+ */
 export function Experience() {
   const { roles } = useSite();
   const compact = useMediaQuery('(max-width: 780px)');
+  const reduced = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: [`start ${REACH}`, `end ${REACH}`] });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 200, damping: 50, restDelta: 0.001 });
 
   return (
-    <ol className="roles">
-      {roles.map((role) => (
-        <Role key={role.company} role={role} compact={compact} />
-      ))}
-    </ol>
+    <div className="timeline" ref={ref}>
+      <div className="timeline__rail" aria-hidden="true">
+        <motion.span className="timeline__fill" style={{ scaleY: reduced ? 1 : scaleY }} />
+      </div>
+      <ol className="roles">
+        {roles.map((role) => (
+          <Role key={role.company} role={role} compact={compact} reduced={reduced} />
+        ))}
+      </ol>
+    </div>
   );
 }
 
-function Role({ role, compact }: { role: RoleData; compact: boolean }) {
+function Role({ role, compact, reduced }: { role: RoleData; compact: boolean; reduced: boolean }) {
   const t = useUi();
+  const ref = useRef<HTMLLIElement>(null);
+  // Aceso assim que o topo do cargo cruza a linha de chegada, e fica aceso acima dela.
+  const reached = useInView(ref, { margin: '100000px 0px -30% 0px' }) || reduced;
   const [open, setOpen] = useState(false);
   const hidden = compact && !open ? Math.max(0, role.bullets.length - COMPACT_BULLETS) : 0;
   const bullets = hidden ? role.bullets.slice(0, COMPACT_BULLETS) : role.bullets;
 
   return (
-    <li className={`role${role.current ? ' role--current' : ''}`}>
+    <li ref={ref} className={`role${role.current ? ' role--current' : ''}${reached ? ' role--reached' : ''}`}>
       <div className="role__id">
         <h3 className="role__company">
           {role.href ? (
