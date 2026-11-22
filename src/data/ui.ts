@@ -5,7 +5,7 @@ const pt = {
   htmlLang: 'pt-BR',
   title: 'Luiz Filipe Miranda, desenvolvedor full stack',
   skip: 'Pular para o conteúdo',
-  nav: { experiencia: 'Experiência', cases: 'Cases', stack: 'Stack', contato: 'Contato' },
+  nav: { experiencia: 'Experiência', cases: 'Cases', toolbox: 'Toolbox', stack: 'Stack', contato: 'Contato' },
   navLabel: 'Navegação principal',
   switchTo: 'English',
   switchLabel: 'Ver o site em inglês',
@@ -18,6 +18,7 @@ const pt = {
   sections: {
     experiencia: { title: 'Experiência', aside: 'Onde o trabalho foi entregue e o que mudou depois.' },
     cases: { title: 'Cases', aside: 'Cinco projetos com arquitetura, decisões e código abertos.' },
+    toolbox: { title: 'Toolbox', aside: 'Skills e MCPs que eu escrevo para os meus agentes. Cada uma faz um trabalho só.' },
     stack: { title: 'Stack', aside: 'O que uso no dia a dia.' },
     formacao: { title: 'Formação' },
     contato: { title: 'Contato', aside: 'Resposta pelo email costuma ser a mais rápida.' }
@@ -41,7 +42,20 @@ const pt = {
   eduTopics: 'O que estudei',
   caseNext: 'próximo case',
   caseNextLabel: 'Próximo case',
-  codeTabs: 'Arquivos do case'
+  codeTabs: 'Arquivos do case',
+  toolbox: {
+    input: 'Você manda',
+    output: 'Volta',
+    verdicts: 'Vereditos',
+    limits: 'O que ela não faz',
+    install: 'Para instalar, cole no seu agente',
+    run: 'Para usar',
+    copy: (what: string) => `Copiar: ${what}`,
+    copied: 'Copiado',
+    agents: 'Roda em',
+    repo: 'Ver no GitHub',
+    demo: 'Como ela trabalha'
+  }
 };
 
 export type Ui = typeof pt;
@@ -50,7 +64,7 @@ const en: Ui = {
   htmlLang: 'en',
   title: 'Luiz Filipe Miranda, full stack developer',
   skip: 'Skip to content',
-  nav: { experiencia: 'Experience', cases: 'Work', stack: 'Stack', contato: 'Contact' },
+  nav: { experiencia: 'Experience', cases: 'Work', toolbox: 'Toolbox', stack: 'Stack', contato: 'Contact' },
   navLabel: 'Main navigation',
   switchTo: 'Português',
   switchLabel: 'Ver o site em português',
@@ -63,6 +77,7 @@ const en: Ui = {
   sections: {
     experiencia: { title: 'Experience', aside: 'Where the work shipped and what changed afterwards.' },
     cases: { title: 'Work', aside: 'Five projects with architecture, decisions and code in the open.' },
+    toolbox: { title: 'Toolbox', aside: 'Skills and MCPs I write for my own agents. Each one does a single job.' },
     stack: { title: 'Stack', aside: 'What I use day to day.' },
     formacao: { title: 'Education' },
     contato: { title: 'Contact', aside: 'Email is usually the fastest way to reach me.' }
@@ -86,7 +101,20 @@ const en: Ui = {
   eduTopics: 'What I studied',
   caseNext: 'next case',
   caseNextLabel: 'Next case',
-  codeTabs: 'Case files'
+  codeTabs: 'Case files',
+  toolbox: {
+    input: 'You send',
+    output: 'You get',
+    verdicts: 'Verdicts',
+    limits: 'What it does not do',
+    install: 'To install, paste this into your agent',
+    run: 'To use it',
+    copy: (what: string) => `Copy: ${what}`,
+    copied: 'Copied',
+    agents: 'Runs on',
+    repo: 'See it on GitHub',
+    demo: 'How it works'
+  }
 };
 
 export const ui: Record<Locale, Ui> = { pt, en };

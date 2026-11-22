@@ -5,6 +5,7 @@ import { Education, Experience, Section, StackBand } from '../components/section
 import { SiteHeader } from '../components/SiteHeader';
 import { StudioStage } from '../components/StudioStage';
 import { SweepLink } from '../components/SweepLink';
+import { Toolbox } from '../components/Toolbox';
 import { Vitrine } from '../components/Vitrine';
 import { WordReveal } from '../components/WordReveal';
 
@@ -30,6 +31,10 @@ export default function Home() {
 
         <Section id="cases" title={t.sections.cases.title} aside={t.sections.cases.aside}>
           <Vitrine />
+        </Section>
+
+        <Section id="toolbox" title={t.sections.toolbox.title} aside={t.sections.toolbox.aside}>
+          <Toolbox />
         </Section>
 
         <Section id="stack" title={t.sections.stack.title} aside={t.sections.stack.aside}>

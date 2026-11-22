@@ -6,7 +6,7 @@ import { useMediaQuery } from '../lib/motion';
 import { LightSwitch } from './LightSwitch';
 import { LocaleSwitch } from './LocaleSwitch';
 
-const NAV = ['experiencia', 'cases', 'stack', 'contato'] as const;
+const NAV = ['experiencia', 'cases', 'toolbox', 'stack', 'contato'] as const;
 
 function SectionLink({ id, label }: { id: string; label: string }) {
   const { pathname } = useLocation();
