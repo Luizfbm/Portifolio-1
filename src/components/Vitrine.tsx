@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
-import { getCases } from '../data/cases';
+import { getCases, type CaseStudy } from '../data/cases';
+import { CoverVideo } from './CaseVideo';
 import { useUi } from '../data/ui';
 import { localePath, useLocale } from '../lib/locale';
 import { DUR_BASE, EASE_OUT, useMediaQuery, useReducedMotion } from '../lib/motion';
@@ -26,11 +27,7 @@ export function Vitrine() {
         {cases.map((item) => (
           <li key={item.slug}>
             <Link className="vitrine__card plate" to={localePath(locale, `/cases/${item.slug}`)}>
-              {item.screens?.[0] ? (
-                <div className="vitrine__frame">
-                  <img src={item.screens[0].src} alt="" loading="lazy" />
-                </div>
-              ) : null}
+              <Cover study={item} />
               <h3 className="vitrine__name">{item.name}</h3>
               <p className="vitrine__context meta">{item.context}</p>
               {item.challenge ? <p className="vitrine__brief meta">{item.challenge.short}</p> : null}
@@ -78,11 +75,7 @@ export function Vitrine() {
             exit={reduced ? undefined : { opacity: 0 }}
             transition={{ duration: reduced ? 0 : DUR_BASE, ease: EASE_OUT }}
           >
-            {active.screens?.[0] ? (
-              <div className="vitrine__frame">
-                <img src={active.screens[0].src} alt="" loading="lazy" />
-              </div>
-            ) : null}
+            <Cover study={active} />
             {active.challenge ? <p className="vitrine__brief meta">{active.challenge.short}</p> : null}
             <h3 className="vitrine__headline">{active.headline}</h3>
             <p className="vitrine__summary">{active.summary}</p>
@@ -105,6 +98,23 @@ export function Vitrine() {
           </motion.article>
         </AnimatePresence>
       </div>
+    </div>
+  );
+}
+
+/** Capa do case: a demo em vídeo quando existe, senão o primeiro print. */
+function Cover({ study }: { study: CaseStudy }) {
+  if (study.video) {
+    return (
+      <div className="vitrine__frame">
+        <CoverVideo src={study.video.src} poster={study.video.poster} />
+      </div>
+    );
+  }
+  if (!study.screens?.[0]) return null;
+  return (
+    <div className="vitrine__frame">
+      <img src={study.screens[0].src} alt="" loading="lazy" />
     </div>
   );
 }

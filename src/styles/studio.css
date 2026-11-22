@@ -958,7 +958,9 @@
   overflow: hidden;
 }
 
-.vitrine__frame img {
+.vitrine__frame img,
+.vitrine__frame video {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -971,8 +973,11 @@
 }
 
 .vitrine__sheet .vitrine__frame img,
+.vitrine__sheet .vitrine__frame video,
 .vitrine__card:hover .vitrine__frame img,
-.vitrine__card:focus-visible .vitrine__frame img {
+.vitrine__card:hover .vitrine__frame video,
+.vitrine__card:focus-visible .vitrine__frame img,
+.vitrine__card:focus-visible .vitrine__frame video {
   filter: none;
   opacity: 1;
 }

@@ -169,6 +169,22 @@
   border-radius: 4px;
 }
 
+/* O vídeo fica fora da grade dos prints, na largura toda, com o mesmo
+   tratamento de borda. O fundo segura o lugar enquanto o poster carrega. */
+.case-video {
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.case-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1280 / 800;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--plane);
+}
+
 .screen figcaption {
   margin-top: 0.75rem;
   color: var(--ink-3);

@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { findCase, getCases, renamedSlug } from '../data/cases';
 import { useUi } from '../data/ui';
 import { localePath, useLocale } from '../lib/locale';
+import { CaseVideo } from '../components/CaseVideo';
 import { CodeViewer } from '../components/CodeViewer';
 import { SiteHeader } from '../components/SiteHeader';
 import { SweepLink } from '../components/SweepLink';
@@ -83,11 +84,12 @@ export default function CaseStudyPage() {
             <p className="case__prose">{study.story}</p>
           </section>
 
-          {study.screens?.length ? (
+          {study.screens?.length || study.video ? (
             <section className="case__block" aria-labelledby="produto-title">
               <h2 id="produto-title">{t.caseProduct}</h2>
+              {study.video ? <CaseVideo key={study.video.src} {...study.video} /> : null}
               <div className="screens">
-                {study.screens.map((screen) => (
+                {study.screens?.map((screen) => (
                   <figure key={screen.src} className="screen">
                     <img src={screen.src} alt={screen.alt} loading="lazy" />
                     <figcaption>{screen.caption}</figcaption>

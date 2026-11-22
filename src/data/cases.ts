@@ -22,6 +22,8 @@ export type CaseStudy = {
   screens?: { src: string; alt: string; caption: string }[];
   /** Troca a nota padrão dos prints quando eles não vêm de uma instância local. */
   screensNote?: string;
+  /** Vídeo curto, sem áudio, do produto funcionando. Fica antes dos prints. */
+  video?: { src: string; poster: string; label: string; caption: string };
   architecture: { src: string; alt: string; caption: string };
   points: { title: string; body: string }[];
   code: CodeTab[];
@@ -112,6 +114,14 @@ export const cases: CaseStudy[] = [
       }
     ],
     screensNote: 'Capturas do app publicado em lunar.luizfbm.win.',
+    video: {
+      src: '/assets/cases/terminators-lunar-demo.mp4',
+      poster: '/assets/cases/terminators-lunar-demo-poster.webp',
+      label:
+        'Vídeo do app: do mapa do polo sul o lander pousa no Connecting Ridge CR03, a Window de 14 dias é escolhida e a vista do chão mostra a Terra descendo atrás da crista e o Sol sumindo atrás do relevo.',
+      caption:
+        'O fluxo inteiro no app publicado: escolho o Site CR03 no Connecting Ridge e uma Window de 14 dias com o VIPER. Na vista do chão, o período sem link mostra a Terra descendo atrás da crista, e o de bateria mostra o Sol já atrás do relevo.'
+    },
     screens: [
       {
         src: '/assets/cases/terminators-lunar-chao.webp',
@@ -256,6 +266,14 @@ def _refine(left: Look, right: Look, body: Seen, look: Callable[[datetime], Look
     links: [{ label: 'Repositório', href: 'https://github.com/Luizfbm/fullstack-challenge' }],
     story:
       'Peguei o desafio como um cassino realtime. Queria deixar claro onde cada responsabilidade mora. O Game Service não mexe direto no saldo, o Wallet Service cuida do ledger em centavos com BigInt, o Kong concentra a entrada, o Keycloak emite identidade, o Socket.IO publica os eventos da rodada e a observabilidade deixa a operação auditável.',
+    video: {
+      src: '/assets/cases/chrono-crash-demo.mp4',
+      poster: '/assets/cases/chrono-crash-demo-poster.webp',
+      label:
+        'Vídeo de uma rodada do Chrono Crash: aposta de R$ 50,00 na contagem, o multiplicador sobe, cash out em 1.80x, o saldo do topo sobe e a rodada termina em crash.',
+      caption:
+        'Uma rodada inteira rodando local: aposto R$ 50,00 na contagem, saco em 1.80x e o saldo do topo sobe com o pagamento. A rodada segue sem mim até o crash. Cortei parte da contagem e da subida para caber.'
+    },
     screens: [
       {
         src: '/assets/cases/chrono-crash-rodada.webp',
@@ -862,6 +880,7 @@ function translate(study: CaseStudy): CaseStudy {
     story: text.story,
     glossary: text.glossary ?? study.glossary,
     screensNote: text.screensNote ?? study.screensNote,
+    video: study.video && { ...study.video, ...text.video },
     points: text.points,
     closing: text.closing,
     links: study.links.map((link) => (link.label === 'Repositório' ? { ...link, label: text.repoLabel } : link)),

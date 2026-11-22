@@ -9,6 +9,7 @@ export type CaseText = Pick<CaseStudy, 'context' | 'headline' | 'summary' | 'rea
   glossary?: { term: string; body: string }[];
   challenge?: { short: string; body: string };
   screensNote?: string;
+  video?: { label: string; caption: string };
   architecture: { alt: string; caption: string };
   repoLabel: string;
 };
@@ -28,6 +29,12 @@ export const casesEn: Record<string, CaseText> = {
     repoLabel: 'Repository',
     story:
       'I treated the challenge as a realtime casino and wanted it obvious where each responsibility lives. The Game Service never touches the balance, the Wallet Service keeps the ledger in cents with BigInt, Kong is the single entry point, Keycloak issues identity, Socket.IO publishes round events and observability keeps the whole thing auditable.',
+    video: {
+      label:
+        'Video of a Chrono Crash round: a R$ 50.00 bet during the countdown, the multiplier climbs, cash out at 1.80x, the balance at the top goes up and the round ends in a crash.',
+      caption:
+        'A whole round running locally: I bet R$ 50.00 during the countdown, cash out at 1.80x and the balance at the top goes up with the payout. The round carries on without me until the crash. I cut part of the countdown and the climb to keep it short.'
+    },
     screens: [
       {
         alt: 'Chrono Crash during a round: multiplier at 1.09x, an accepted R$ 10.00 bet and the cash out button active.',
@@ -290,6 +297,12 @@ export const casesEn: Record<string, CaseText> = {
       }
     ],
     screensNote: 'Screenshots of the app published at lunar.luizfbm.win.',
+    video: {
+      label:
+        "Video of the app: from the south pole map the lander touches down at Connecting Ridge CR03, a 14-day Window is chosen, and the ground view shows the Earth going down behind the ridge and the Sun going behind the terrain.",
+      caption:
+        'The whole flow in the published app: I pick Site CR03 at Connecting Ridge and a 14-day Window with VIPER. In the ground view, the no-link period shows the Earth going down behind the ridge, and the battery period shows the Sun already behind the terrain.'
+    },
     screens: [
       {
         alt: 'Ground view at Site 001, Connecting Ridge: the Sun over the terrain, the Earth overhead, the Window timeline and the panel with Sun and Earth hours.',
