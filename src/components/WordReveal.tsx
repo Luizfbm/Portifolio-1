@@ -71,8 +71,8 @@ export function WordReveal({ text, note, title }: WordRevealProps) {
 }
 
 function Note({ children, progress }: { children: string; progress: MotionValue<number> }) {
-  const opacity = useTransform(progress, [0, 0.18, 0.85], [0.35, 1, 1]);
-  const x = useTransform(progress, [0, 0.22], [-16, 0]);
+  const opacity = useTransform(progress, [0, 0.18, 1], [0.35, 1, 1]);
+  const x = useTransform(progress, [0, 0.22, 1], [-16, 0, 0]);
 
   return (
     <motion.p style={{ opacity, x }} className="reveal__aside-text">
@@ -96,10 +96,16 @@ function Word({
 }) {
   const start = (index / total) * 0.62;
   const end = Math.min(1, start + 0.28);
+  const skew = travel > 40 ? 14 : 8;
 
-  const opacity = useTransform(progress, [start, end], [0.12, 1]);
-  const x = useTransform(progress, [start, end], [travel, 0]);
-  const skewX = useTransform(progress, [start, end], [travel > 40 ? 14 : 8, 0]);
+  // O trecho precisa ir de 0 a 1. Com só [start, end], o navegador completa as
+  // pontas por conta própria e a palavra acende e volta a apagar.
+  const stops = [...(start > 0 ? [0] : []), start, end, ...(end < 1 ? [1] : [])];
+  const span = <T,>(from: T, to: T): T[] => [...(start > 0 ? [from] : []), from, to, ...(end < 1 ? [to] : [])];
+
+  const opacity = useTransform(progress, stops, span(0.12, 1));
+  const x = useTransform(progress, stops, span(travel, 0));
+  const skewX = useTransform(progress, stops, span(skew, 0));
 
   return (
     <>
