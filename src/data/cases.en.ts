@@ -7,6 +7,7 @@ import type { CaseStudy } from './cases';
 export type CaseText = Pick<CaseStudy, 'context' | 'headline' | 'summary' | 'readings' | 'story' | 'points' | 'closing'> & {
   screens?: { alt: string; caption: string }[];
   glossary?: { term: string; body: string }[];
+  challenge?: { short: string; body: string };
   screensNote?: string;
   architecture: { alt: string; caption: string };
   repoLabel: string;
@@ -213,10 +214,14 @@ export const casesEn: Record<string, CaseText> = {
     closing: 'AI to review code, a shareable page as the output and a server-first architecture underneath.'
   },
   'terminators-lunar': {
-    context: 'NASA Space Apps 2026',
+    context: "NASA's worldwide challenge",
+    challenge: {
+      short: "NASA's worldwide hackathon: two days, the agency's open data, 14 and 15 November 2026.",
+      body: "The NASA Space Apps Challenge is NASA's worldwide hackathon, which the agency presents as the largest annual hackathon in the world. Over two days, teams gathered at hundreds of local events use open data from NASA and 17 partner space agencies to solve challenges written by their experts. The 2026 edition took place on 14 and 15 November, with teams of up to six people. Ours picked the Lunar Landing Site Navigator challenge."
+    },
     headline: "Will a lander at the Moon's south pole see the Sun and the Earth? For how long?",
     summary:
-      "Our team's project for the NASA Space Apps Challenge 2026. You pick a Site and a Window, and the app tells you when the Sun and the Earth go out of view and which terrain feature hides each one. FastAPI and NumPy in the engine, SPICE and the LOLA maps for data, React and Three.js in the interface.",
+      "Lunar Landing Site Navigator, our team's project for the NASA Space Apps Challenge 2026. You pick a Site and a Window, and the app tells you when the Sun and the Earth go out of view and which terrain feature hides each one. FastAPI and NumPy in the engine, SPICE and the LOLA maps for data, React and Three.js in the interface.",
     readings: [
       { label: 'sites', value: '134, 130 from Artemis' },
       { label: 'horizon', value: '720 rays at 3 resolutions' },

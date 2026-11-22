@@ -13,6 +13,8 @@ export type CaseStudy = {
   readings: { label: string; value: string }[];
   stack: string[];
   links: { label: string; href: string }[];
+  /** O evento ou desafio em que o projeto nasceu: uma linha para a vitrine e um parágrafo para o case. */
+  challenge?: { short: string; body: string };
   story: string;
   /** Termos do domínio explicados para quem não é da área. */
   glossary?: { term: string; body: string }[];
@@ -29,11 +31,11 @@ export type CaseStudy = {
 export const cases: CaseStudy[] = [
   {
     slug: 'terminators-lunar',
-    name: 'Terminators Lunar',
-    context: 'NASA Space Apps 2026',
+    name: 'NASA Space Apps 2026',
+    context: 'Desafio mundial da NASA',
     headline: 'Um lander no polo sul da Lua vai ver o Sol e a Terra? Por quanto tempo?',
     summary:
-      'Projeto do nosso time no NASA Space Apps Challenge 2026. Você escolhe um Site e uma Window, e o app diz quando o Sol e a Terra somem e qual feição do relevo esconde cada um. FastAPI e NumPy no motor, SPICE e os mapas do LOLA nos dados, React e Three.js na interface.',
+      'Lunar Landing Site Navigator, o projeto do nosso time no NASA Space Apps Challenge 2026. Você escolhe um Site e uma Window, e o app diz quando o Sol e a Terra somem e qual feição do relevo esconde cada um. FastAPI e NumPy no motor, SPICE e os mapas do LOLA nos dados, React e Three.js na interface.',
     readings: [
       { label: 'sites', value: '134, 130 do Artemis' },
       { label: 'horizonte', value: '720 raios em 3 resoluções' },
@@ -45,6 +47,10 @@ export const cases: CaseStudy[] = [
       { label: 'Repositório', href: 'https://github.com/Luizfbm/terminators-lunar' },
       { label: 'lunar.luizfbm.win', href: 'https://lunar.luizfbm.win' }
     ],
+    challenge: {
+      short: 'O hackathon mundial da NASA: dois dias, dados abertos da agência, 14 e 15 de novembro de 2026.',
+      body: 'O NASA Space Apps Challenge é o hackathon mundial da NASA, que a agência apresenta como o maior hackathon anual do mundo. Em dois dias, times reunidos em centenas de eventos locais usam dados abertos da NASA e de 17 agências espaciais parceiras para resolver desafios escritos por especialistas delas. A edição de 2026 aconteceu em 14 e 15 de novembro, com times de até seis pessoas. O nosso escolheu o desafio Lunar Landing Site Navigator.'
+    },
     story:
       'No polo sul da Lua o Sol fica a cerca de 1,5° do horizonte e dá uma volta nele por mês, então uma única crista decide se o painel solar funciona. Levamos isso para o desafio Lunar Landing Site Navigator como uma pergunta só: daquele ponto, naquela janela, o lander vê o Sol e a Terra? Todo o cálculo fica no backend, a Query inteira cabe no link e cada resposta nomeia o que escondeu o Sol ou a Terra. O Sol importa porque é ele que carrega os painéis, e a Terra porque sem ela à vista não há comunicação direta.',
     glossary: [
@@ -852,6 +858,7 @@ function translate(study: CaseStudy): CaseStudy {
     headline: text.headline,
     summary: text.summary,
     readings: text.readings,
+    challenge: text.challenge ?? study.challenge,
     story: text.story,
     glossary: text.glossary ?? study.glossary,
     screensNote: text.screensNote ?? study.screensNote,

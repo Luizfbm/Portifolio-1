@@ -82,6 +82,7 @@ export function Vitrine() {
                 <img src={active.screens[0].src} alt="" loading="lazy" />
               </div>
             ) : null}
+            {active.challenge ? <p className="vitrine__brief meta">{active.challenge.short}</p> : null}
             <h3 className="vitrine__headline">{active.headline}</h3>
             <p className="vitrine__summary">{active.summary}</p>
             <dl className="readings">

@@ -69,6 +69,13 @@ export default function CaseStudyPage() {
             ))}
           </dl>
 
+          {study.challenge ? (
+            <section className="case__block" aria-labelledby="desafio-title">
+              <h2 id="desafio-title">{t.caseChallenge}</h2>
+              <p className="case__prose">{study.challenge.body}</p>
+            </section>
+          ) : null}
+
           <section className="case__block" aria-labelledby="historia-title">
             <h2 id="historia-title">{t.caseStory}</h2>
             <p className="case__prose">{study.story}</p>

@@ -124,24 +124,23 @@ export function StudioStage() {
                   {t.downloadCv}
                 </a>
               </div>
+              <ul className="stage__contact">
+                <li>
+                  <SweepLink href={`mailto:${person.email}`}>{person.email}</SweepLink>
+                </li>
+                <li>
+                  <SweepLink href={person.github.href} external>
+                    {person.github.label}
+                  </SweepLink>
+                </li>
+                <li>
+                  <SweepLink href={person.linkedin.href} external>
+                    {person.linkedin.label}
+                  </SweepLink>
+                </li>
+              </ul>
             </div>
           </div>
-
-          <ul className="stage__contact">
-            <li>
-              <SweepLink href={`mailto:${person.email}`}>{person.email}</SweepLink>
-            </li>
-            <li>
-              <SweepLink href={person.github.href} external>
-                {person.github.label}
-              </SweepLink>
-            </li>
-            <li>
-              <SweepLink href={person.linkedin.href} external>
-                {person.linkedin.label}
-              </SweepLink>
-            </li>
-          </ul>
         </div>
       </div>
 

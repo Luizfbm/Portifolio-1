@@ -168,13 +168,42 @@ export function StackBand() {
 
 export function Education() {
   const { education } = useSite();
+  const t = useUi();
   return (
     <ul className="education">
       {education.map((entry) => (
         <li key={entry.school}>
-          <h3>{entry.school}</h3>
-          <p>{entry.course}</p>
-          <p className="reading">{entry.period}</p>
+          <header className="education__head">
+            <h3>{entry.school}</h3>
+            <p className="education__course">{entry.course}</p>
+            <p className="reading">{entry.period}</p>
+          </header>
+          <div className="education__body">
+            <dl className="education__facts">
+              <div>
+                <dt className="meta">{t.eduAbout}</dt>
+                <dd>{entry.about}</dd>
+              </div>
+              <div>
+                <dt className="meta">{t.eduProgram}</dt>
+                <dd>{entry.program}</dd>
+              </div>
+            </dl>
+            <div className="education__learned">
+              <p className="meta">{t.eduTopics}</p>
+              <ul className="education__topics">
+                {entry.topics.map((topic) => (
+                  <li key={topic}>{topic}</li>
+                ))}
+              </ul>
+              {entry.project ? (
+                <div className="education__project">
+                  <h4>{entry.project.name}</h4>
+                  <p>{entry.project.body}</p>
+                </div>
+              ) : null}
+            </div>
+          </div>
         </li>
       ))}
     </ul>

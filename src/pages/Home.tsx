@@ -22,6 +22,8 @@ export default function Home() {
       <main id="conteudo">
         <StudioStage />
 
+        <WordReveal text={positioning} note={positioningNote} title={t.positioningTitle} />
+
         <Section id="experiencia" title={t.sections.experiencia.title} aside={t.sections.experiencia.aside}>
           <Experience />
         </Section>
@@ -37,8 +39,6 @@ export default function Home() {
         <Section id="formacao" title={t.sections.formacao.title}>
           <Education />
         </Section>
-
-        <WordReveal text={positioning} note={positioningNote} title={t.positioningTitle} />
 
         <Section id="contato" title={t.sections.contato.title} aside={t.sections.contato.aside}>
           <ul className="contact">

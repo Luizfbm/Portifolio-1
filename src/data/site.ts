@@ -30,7 +30,17 @@ export type SiteContent = {
   positioningNote: string;
   roles: Role[];
   stackGroups: { label: string; items: string[] }[];
-  education: { school: string; course: string; period: string }[];
+  education: {
+    school: string;
+    course: string;
+    period: string;
+    /** Uma linha sobre a instituição, para quem não a conhece. */
+    about: string;
+    /** O que o curso é: duração, formato e o que a grade cobre. */
+    program: string;
+    topics: string[];
+    project?: { name: string; body: string };
+  }[];
 };
 
 const pt: SiteContent = {
@@ -105,9 +115,34 @@ const pt: SiteContent = {
     {
       school: 'Universidade Vila Velha (UVV)',
       course: 'Tecnólogo em Análise e Desenvolvimento de Sistemas',
-      period: 'jul 2024 a dez 2026'
+      period: 'jul 2024 a dez 2026',
+      about:
+        'Universidade privada sem fins lucrativos em Vila Velha, no Espírito Santo. Foi fundada em 1974 e virou universidade em 2011.',
+      program:
+        'Graduação tecnológica de dois anos e meio, em cinco períodos, no turno da noite. A grade passa por programação, engenharia de software, sistemas operacionais, estatística, gestão de projetos e empreendedorismo, com alianças acadêmicas com Cisco, Oracle e Red Hat.',
+      topics: [
+        'Banco de dados: SQL Server, MySQL e PostgreSQL',
+        'Web front-end e back-end: React, Next.js, PHP e Node.js',
+        'Orientação a objetos com C#',
+        'Redes: TCP/IP, HTTP, DNS, FTP e SSH',
+        'Engenharia de software: Scrum, Kanban, XP, Lean e DevOps',
+        'Estrutura de dados e algoritmos'
+      ]
     },
-    { school: 'Senac', course: 'Técnico de Informática para a Internet', period: 'jun 2022 a ago 2024' }
+    {
+      school: 'Senac',
+      course: 'Técnico em Informática para Internet',
+      period: 'jun 2022 a ago 2024',
+      about:
+        'Serviço Nacional de Aprendizagem Comercial, criado em 1946. É uma instituição de educação profissional ligada ao comércio de bens, serviços e turismo.',
+      program:
+        'Curso técnico de 1000 horas voltado a aplicações web e mobile, com desenvolvimento web, APIs, banco de dados, redes, estrutura de dados e algoritmos.',
+      topics: ['HTML, CSS e JavaScript', 'PHP com MySQL', 'Java para Android', 'Java com Spring Boot', 'Git e GitHub'],
+      project: {
+        name: 'Projeto integrador: Parkflow',
+        body: 'Sistema que identifica veículos por QR Code no estacionamento da unidade. Fiz o back-end, o banco de dados, a autenticação, o cadastro de usuários e veículos, a geração e a validação dos QR Codes e a integração com o app mobile em Java. Apresentei para professores, direção e outras turmas, mais de 90 pessoas.'
+      }
+    }
   ]
 };
 
@@ -183,9 +218,34 @@ const en: SiteContent = {
     {
       school: 'Universidade Vila Velha (UVV)',
       course: 'Associate degree in Systems Analysis and Development',
-      period: 'Jul 2024 to Dec 2026'
+      period: 'Jul 2024 to Dec 2026',
+      about:
+        'A private non-profit university in Vila Velha, in the Brazilian state of Espírito Santo. It was founded in 1974 and became a university in 2011.',
+      program:
+        'A two-and-a-half-year technology degree, in five terms, taught in the evening. The curriculum covers programming, software engineering, operating systems, statistics, project management and entrepreneurship, with academic alliances with Cisco, Oracle and Red Hat.',
+      topics: [
+        'Databases: SQL Server, MySQL and PostgreSQL',
+        'Front-end and back-end web: React, Next.js, PHP and Node.js',
+        'Object-oriented programming with C#',
+        'Networking: TCP/IP, HTTP, DNS, FTP and SSH',
+        'Software engineering: Scrum, Kanban, XP, Lean and DevOps',
+        'Data structures and algorithms'
+      ]
     },
-    { school: 'Senac', course: 'Web Development technical course', period: 'Jun 2022 to Aug 2024' }
+    {
+      school: 'Senac',
+      course: 'Web Development technical course',
+      period: 'Jun 2022 to Aug 2024',
+      about:
+        "Brazil's National Commercial Training Service, created in 1946. It is a vocational education institution tied to the trade, services and tourism sector.",
+      program:
+        'A 1000-hour technical course aimed at web and mobile applications, covering web development, APIs, databases, networking, data structures and algorithms.',
+      topics: ['HTML, CSS and JavaScript', 'PHP with MySQL', 'Java for Android', 'Java with Spring Boot', 'Git and GitHub'],
+      project: {
+        name: 'Capstone project: Parkflow',
+        body: 'A system that identifies vehicles by QR code in the campus car park. I built the back end, the database, authentication, user and vehicle registration, QR code generation and validation, and the integration with the Java mobile app. I presented it to teachers, management and other classes, more than 90 people.'
+      }
+    }
   ]
 };
 
