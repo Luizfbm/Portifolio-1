@@ -1028,6 +1028,10 @@
   margin-top: 0.5rem;
 }
 
+.vitrine__card .vitrine__brief {
+  margin: 0.9rem 0 0;
+}
+
 .vitrine__card .vitrine__summary {
   margin-top: 0.9rem;
 }

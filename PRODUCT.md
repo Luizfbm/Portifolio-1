@@ -29,7 +29,7 @@ O visitante chega de GitHub, LinkedIn ou email, em desktop ou telefone, com pouc
 ## Capabilities and Constraints
 
 - Superfície única: home com retrato, experiência, cases, contato. Cases existentes têm páginas próprias e continuam existindo como conteúdo.
-- Quatro cases obrigatórios: Chrono Crash, IAeJovem, Case Flow, Dev-roast.
+- Cinco cases obrigatórios, nesta ordem: NASA Space Apps 2026 (Lunar Landing Site Navigator), Chrono Crash, IAeJovem, Case Flow, Dev-roast.
 - Contato visível: `contatoluizfbm@gmail.com`, GitHub `Luizfbm`, LinkedIn `luizfilipedev`.
 - Copy pode ser reescrita; fatos não.
 - Sem backend neste fase.
@@ -52,6 +52,7 @@ O visitante chega de GitHub, LinkedIn ou email, em desktop ou telefone, com pouc
 - S_line — Sistemas Online (anterior): React Native / Node; 48+ telas; EAS + GitHub Actions (2 dias → <3h); 30+ apps white-label. O site antigo marcava este cargo como "atual"; isso está obsoleto.
 - Super Estágios (estágio): PHP/JS; fluxos com 3,5 milhões de estudantes.
 - Cases em `projects/`: Chrono Crash, IAeJovem, Case Flow, Dev-roast, com diagramas em `assets/`.
+- Case NASA Space Apps 2026: projeto do time no hackathon (14 e 15 de novembro de 2026), repositório `Luizfbm/terminators-lunar`, app em `lunar.luizfbm.win`. O repositório está em avaliação: só leitura, nada de commit ou push nele.
 - Formação no site atual: UVV (TADS, jul 2024–dez 2026) e Senac (Técnico de Informática para Internet). Não foi confirmada como obrigatória neste grill.
 - Métricas do site antigo (50+ laboratórios, 5.000 usuários, etc.) são do período S_line; não fabricar número novo da PVT.
 

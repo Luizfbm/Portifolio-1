@@ -30,7 +30,7 @@ export type CaseStudy = {
 
 export const cases: CaseStudy[] = [
   {
-    slug: 'terminators-lunar',
+    slug: 'nasa-space-apps-2026',
     name: 'NASA Space Apps 2026',
     context: 'Desafio mundial da NASA',
     headline: 'Um lander no polo sul da Lua vai ver o Sol e a Terra? Por quanto tempo?',
@@ -874,6 +874,13 @@ const casesByLocale: Record<Locale, CaseStudy[]> = { pt: cases, en: cases.map(tr
 
 export function getCases(locale: Locale): CaseStudy[] {
   return casesByLocale[locale];
+}
+
+/** Slugs antigos que já circularam em links; a página do case redireciona para o atual. */
+const renamedSlugs: Record<string, string> = { 'terminators-lunar': 'nasa-space-apps-2026' };
+
+export function renamedSlug(slug: string | undefined): string | undefined {
+  return slug ? renamedSlugs[slug] : undefined;
 }
 
 export function findCase(slug: string | undefined, locale: Locale): CaseStudy | undefined {

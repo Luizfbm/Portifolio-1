@@ -213,7 +213,7 @@ export const casesEn: Record<string, CaseText> = {
     ],
     closing: 'AI to review code, a shareable page as the output and a server-first architecture underneath.'
   },
-  'terminators-lunar': {
+  'nasa-space-apps-2026': {
     context: "NASA's worldwide challenge",
     challenge: {
       short: "NASA's worldwide hackathon: two days, the agency's open data, 14 and 15 November 2026.",

@@ -33,6 +33,7 @@ export function Vitrine() {
               ) : null}
               <h3 className="vitrine__name">{item.name}</h3>
               <p className="vitrine__context meta">{item.context}</p>
+              {item.challenge ? <p className="vitrine__brief meta">{item.challenge.short}</p> : null}
               <p className="vitrine__summary">{item.headline}</p>
               <ul className="chips">
                 {item.stack.slice(0, 5).map((tech) => (

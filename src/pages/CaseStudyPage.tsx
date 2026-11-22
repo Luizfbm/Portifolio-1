@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { findCase, getCases } from '../data/cases';
+import { findCase, getCases, renamedSlug } from '../data/cases';
 import { useUi } from '../data/ui';
 import { localePath, useLocale } from '../lib/locale';
 import { CodeViewer } from '../components/CodeViewer';
@@ -18,6 +18,8 @@ export default function CaseStudyPage() {
     if (study) document.title = `${study.name} · Luiz Filipe Miranda`;
   }, [study]);
 
+  const renamed = renamedSlug(slug);
+  if (renamed) return <Navigate to={localePath(locale, `/cases/${renamed}`)} replace />;
   if (!study) return <Navigate to={localePath(locale, '/')} replace />;
 
   const index = cases.findIndex((item) => item.slug === study.slug);
