@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 
 const QUERY = '(prefers-reduced-motion: reduce)';
 
+/** As mesmas --ease-out e --dur-base de tokens.css, para as animações feitas em JS. */
+export const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
+export const DUR_BASE = 0.42;
+
 export function useReducedMotion(): boolean {
   const [reduced, setReduced] = useState(
     () => typeof window !== 'undefined' && window.matchMedia(QUERY).matches

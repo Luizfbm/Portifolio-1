@@ -1,5 +1,6 @@
 import { useId, type MouseEvent } from 'react';
 import { motion } from 'motion/react';
+import { DUR_BASE, EASE_OUT } from '../lib/motion';
 import { useTheme } from '../lib/theme';
 import { useUi } from '../data/ui';
 
@@ -35,7 +36,7 @@ export function LightSwitch() {
           <clipPath id={clipId}>
             <motion.path
               animate={{ x: lightsOn ? -12 : 0, y: lightsOn ? 10 : 0 }}
-              transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.42 }}
+              transition={{ ease: EASE_OUT, duration: DUR_BASE }}
               d="M0-5h30a1 1 0 0 0 9 13v24H0Z"
             />
           </clipPath>
@@ -47,7 +48,7 @@ export function LightSwitch() {
             r={lightsOn ? 10 : 6.2}
             initial={false}
             animate={{ r: lightsOn ? 10 : 6.2 }}
-            transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.42 }}
+            transition={{ ease: EASE_OUT, duration: DUR_BASE }}
           />
           <motion.g
             style={{ transformOrigin: '16px 16px' }}
@@ -56,7 +57,7 @@ export function LightSwitch() {
               scale: lightsOn ? 0.45 : 1,
               opacity: lightsOn ? 0 : 1
             }}
-            transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.42 }}
+            transition={{ ease: EASE_OUT, duration: DUR_BASE }}
           >
             {RAYS.map((angle) => (
               <polygon key={angle} points="16,1.6 17.55,7.35 14.45,7.35" transform={`rotate(${angle} 16 16)`} />

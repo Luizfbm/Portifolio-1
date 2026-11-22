@@ -10,7 +10,7 @@
 
   --ink: #f2f2f2;
   --ink-2: #bdbdbd;
-  --ink-3: #8f8f8f;
+  --ink-3: #a6a6a6;
 
   --rule: rgba(242, 242, 242, 0.16);
   --rule-strong: rgba(242, 242, 242, 0.34);
@@ -49,7 +49,13 @@
   --step-title: clamp(1.85rem, 3.6vw, 3.1rem);
   --step-lead: clamp(1.125rem, 1.55vw, 1.4rem);
   --step-body: 1.0625rem;
+  --step-sub: 0.95rem;
+  --step-note: 0.9rem;
   --step-small: 0.8125rem;
+
+  --dur-fast: 240ms;
+  --dur-base: 420ms;
+  --dur-slow: 560ms;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-light: cubic-bezier(0.33, 0, 0.15, 1);

@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { getCases } from '../data/cases';
 import { useUi } from '../data/ui';
 import { localePath, useLocale } from '../lib/locale';
-import { useMediaQuery, useReducedMotion } from '../lib/motion';
+import { DUR_BASE, EASE_OUT, useMediaQuery, useReducedMotion } from '../lib/motion';
 
 /**
  * Mesa de luz: os nomes ficam no escuro até a lâmina cair em um deles.
@@ -75,7 +75,7 @@ export function Vitrine() {
             initial={reduced ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={reduced ? undefined : { opacity: 0 }}
-            transition={{ duration: reduced ? 0 : 0.42, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: reduced ? 0 : DUR_BASE, ease: EASE_OUT }}
           >
             {active.screens?.[0] ? (
               <div className="vitrine__frame">

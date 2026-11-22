@@ -37,8 +37,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   transition:
-    background-color 420ms var(--ease-light),
-    color 420ms var(--ease-light);
+    background-color var(--dur-base) var(--ease-light),
+    color var(--dur-base) var(--ease-light);
 }
 
 /* Grão de prata gelatinosa: o site inteiro é uma cópia fotográfica. */
@@ -141,7 +141,7 @@ button {
 
 /* Rótulo pequeno de apoio. Continua na voz do texto, não na do código. */
 .meta {
-  font-size: 0.8rem;
+  font-size: var(--step-small);
   letter-spacing: 0.005em;
   color: var(--ink-3);
 }
@@ -149,7 +149,7 @@ button {
 /* Mono só onde há medida, data ou código. Números tabulares sempre. */
 .reading {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--step-small);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
   color: var(--ink-3);
@@ -171,7 +171,7 @@ button {
   background: var(--ink);
   color: var(--selection-ink);
   font-weight: 600;
-  transition: top 180ms var(--ease-out);
+  transition: top var(--dur-fast) var(--ease-out);
 }
 
 .skip-link:focus-visible {
