@@ -54,7 +54,7 @@ const pt: SiteContent = {
     ]
   },
   positioning:
-    'Pego operação confusa em saúde, educação, ERP e atendimento, e deixo no ar. IA entra só quando corta tempo ou risco.',
+    'Pego processo lento ou manual e transformo em software que roda sozinho, de ponta a ponta. Agentes de IA fazem a parte repetitiva, e as pessoas ficam com o que importa.',
   positioningNote: 'Português nativo, inglês C1. Aberto a posições full stack, mobile e produtos com IA aplicada.',
   roles: [
     {
@@ -157,7 +157,7 @@ const en: SiteContent = {
     ]
   },
   positioning:
-    'I take messy operations in healthcare, education, ERP and customer support and ship them. AI comes in only when it cuts time or risk.',
+    'I take slow or manual processes and turn them into software that runs on its own, end to end. AI agents handle the repetitive part, and people keep the work that matters.',
   positioningNote: 'Native Portuguese, C1 English. Open to full stack, mobile and applied AI product roles.',
   roles: [
     {

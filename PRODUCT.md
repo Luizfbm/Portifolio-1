@@ -20,7 +20,7 @@ Portfólio pessoal de Luiz Filipe Bungenstab Miranda. Existe para o visitante sa
 
 ## Positioning
 
-Full stack que pega operação confusa (saúde, educação, ERP, atendimento) e deixa no ar, com IA só quando reduz tempo ou risco de verdade. O site é o próprio artefato de craft, não um template com bullets.
+Full stack que pega processo lento ou manual e transforma em software que roda sozinho, de ponta a ponta, com agentes de IA fazendo a parte repetitiva. O site é o próprio artefato de craft, não um template com bullets.
 
 ## Operating Context
 
