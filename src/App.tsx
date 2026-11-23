@@ -6,6 +6,7 @@ import { jumpTo, useSmoothScroll } from './lib/smoothScroll';
 import { resolveScrollAnchor, type ScrollAnchor } from './lib/scrollAnchor';
 import Home from './pages/Home';
 import CaseStudyPage from './pages/CaseStudyPage';
+import ToolPage from './pages/ToolPage';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/studio.css';
@@ -64,6 +65,8 @@ function Shell() {
         <Route path="/cases/:slug" element={<CaseStudyPage />} />
         <Route path="/en" element={<Home />} />
         <Route path="/en/cases/:slug" element={<CaseStudyPage />} />
+        <Route path="/toolbox/:slug" element={<ToolPage />} />
+        <Route path="/en/toolbox/:slug" element={<ToolPage />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </>

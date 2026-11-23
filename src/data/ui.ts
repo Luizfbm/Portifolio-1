@@ -18,7 +18,7 @@ const pt = {
   sections: {
     experiencia: { title: 'Experiência', aside: 'Onde o trabalho foi entregue e o que mudou depois.' },
     cases: { title: 'Cases', aside: 'Cinco projetos com arquitetura, decisões e código abertos.' },
-    toolbox: { title: 'Toolbox', aside: 'Skills e MCPs que eu escrevo para os meus agentes. Cada uma faz um trabalho só.' },
+    toolbox: { title: 'Toolbox', aside: 'Ferramentas que eu criei para facilitar o meu dia a dia. Cada uma faz um trabalho só.' },
     stack: { title: 'Stack', aside: 'O que uso no dia a dia.' },
     formacao: { title: 'Formação' },
     contato: { title: 'Contato', aside: 'Resposta pelo email costuma ser a mais rápida.' }
@@ -44,10 +44,16 @@ const pt = {
   caseNextLabel: 'Próximo case',
   codeTabs: 'Arquivos do case',
   toolbox: {
+    open: 'Ver ferramenta',
+    soon: 'Mais em breve',
+    back: 'Voltar à Toolbox',
+    io: 'O que entra e o que sai',
     input: 'Você manda',
     output: 'Volta',
-    verdicts: 'Vereditos',
     limits: 'O que ela não faz',
+    useTitle: 'Instalar e usar',
+    next: 'próxima ferramenta',
+    nextLabel: 'Próxima ferramenta',
     install: 'Para instalar, cole no seu agente',
     run: 'Para usar',
     copy: (what: string) => `Copiar: ${what}`,
@@ -77,7 +83,7 @@ const en: Ui = {
   sections: {
     experiencia: { title: 'Experience', aside: 'Where the work shipped and what changed afterwards.' },
     cases: { title: 'Work', aside: 'Five projects with architecture, decisions and code in the open.' },
-    toolbox: { title: 'Toolbox', aside: 'Skills and MCPs I write for my own agents. Each one does a single job.' },
+    toolbox: { title: 'Toolbox', aside: 'Tools I built to make my day-to-day easier. Each one does a single job.' },
     stack: { title: 'Stack', aside: 'What I use day to day.' },
     formacao: { title: 'Education' },
     contato: { title: 'Contact', aside: 'Email is usually the fastest way to reach me.' }
@@ -103,10 +109,16 @@ const en: Ui = {
   caseNextLabel: 'Next case',
   codeTabs: 'Case files',
   toolbox: {
+    open: 'See the tool',
+    soon: 'More coming soon',
+    back: 'Back to the Toolbox',
+    io: 'What goes in and what comes out',
     input: 'You send',
     output: 'You get',
-    verdicts: 'Verdicts',
     limits: 'What it does not do',
+    useTitle: 'Install and use',
+    next: 'next tool',
+    nextLabel: 'Next tool',
     install: 'To install, paste this into your agent',
     run: 'To use it',
     copy: (what: string) => `Copy: ${what}`,

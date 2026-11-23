@@ -3,6 +3,7 @@ import { dirname, resolve } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { getCases } from './src/data/cases';
+import { getTools } from './src/data/toolbox';
 import type { Locale } from './src/lib/locale';
 
 const ORIGIN = 'https://portfolio.luizfbm.win';
@@ -52,6 +53,18 @@ function pages(): Page[] {
         image: `/og/${study.slug}.jpg`
       });
     }
+    for (const tool of getTools(locale)) {
+      const path = `${prefix}/toolbox/${tool.slug}`;
+      list.push({
+        file: `${path.slice(1)}.html`,
+        locale,
+        path,
+        alternate: locale === 'en' ? `/toolbox/${tool.slug}` : `/en/toolbox/${tool.slug}`,
+        title: `${tool.name} · Toolbox · Luiz Filipe Miranda`,
+        description: `${tool.pitch} ${tool.output}`,
+        image: '/og/site.jpg'
+      });
+    }
   }
   return list;
 }
@@ -69,7 +82,7 @@ function head(page: Page): string {
     `<link rel="alternate" hreflang="pt-BR" href="${ORIGIN}${pt}" />`,
     `<link rel="alternate" hreflang="en" href="${ORIGIN}${en}" />`,
     `<link rel="alternate" hreflang="x-default" href="${ORIGIN}${pt}" />`,
-    `<meta property="og:type" content="${page.path.includes('/cases/') ? 'article' : 'website'}" />`,
+    `<meta property="og:type" content="${/\/(cases|toolbox)\//.test(page.path) ? 'article' : 'website'}" />`,
     `<meta property="og:site_name" content="Luiz Filipe Miranda" />`,
     `<meta property="og:locale" content="${page.locale === 'pt' ? 'pt_BR' : 'en_US'}" />`,
     `<meta property="og:url" content="${url}" />`,
